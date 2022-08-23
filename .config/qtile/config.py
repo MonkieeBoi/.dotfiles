@@ -241,7 +241,7 @@ screens = [
                     fontsize = 43
                     ),
                 # widget.Net(
-                    # format = '{down} ↓↑ {up}',
+                    # format = '↓{down} ↑{up}',
                     # prefix = "M"
                     # ),
                 widget.TextBox(

@@ -123,4 +123,5 @@ if ! shopt -oq posix; then
 fi
 
 export PATH="/home/monke/.local/bin:$PATH"
+PS1="[\u@\h \W]\$ "
 alias config='/usr/bin/git --git-dir=/home/monke/.dotfiles/ --work-tree=/home/monke'
