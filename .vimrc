@@ -4,13 +4,13 @@ set laststatus=2
 colorscheme nord
 
 "highlights searchs
-set hlsearch
+" set hlsearch
 
 "highlights while searching
 set incsearch
 
 "sets default clipboard to system clipboard -- i don't think this actually works
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 
 "set tab to 4 spaces
 set tabstop=4
