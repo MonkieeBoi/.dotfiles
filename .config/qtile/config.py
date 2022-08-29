@@ -71,7 +71,7 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "q", lazy.spawn("rofi -show drun -theme ~/.config/rofi/adil1090x.rasi")),
+    Key([mod], "q", lazy.spawn("rofi -show drun -theme ~/.config/rofi/adi1090x.rasi")),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "s", lazy.hide_show_bar("top"), desc="Toggle panel"),
     # Sound

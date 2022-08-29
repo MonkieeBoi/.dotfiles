@@ -65,12 +65,12 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *roficmd[] = { "rofi", "-show", "drun", "-theme", "~/.config/rofi/monke-plagarised.rasi", NULL };
+static const char *roficmd[] = { "rofi", "-show", "drun", "-theme", "~/.config/rofi/adi1090x.rasi", NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *termcmdnotrans[]  = { "kitty", "-o", "background_opacity=1", NULL };
-static const char *browsercmd[]  = { "google-chrome", "--profile-directory=Default", NULL };
-static const char *workbrowsercmd[]  = { "google-chrome", "--profile-directory=Work", NULL };
-static const char *guestbrowsercmd[]  = { "google-chrome", "--guest", NULL };
+static const char *browsercmd[]  = { "google-chrome-stable", "--profile-directory=Default", NULL };
+static const char *workbrowsercmd[]  = { "google-chrome-stable", "--profile-directory=Work", NULL };
+static const char *guestbrowsercmd[]  = { "google-chrome-stable", "--guest", NULL };
 static const char *screenshotcmd[]  = { "screenshot", NULL };
 static const char *wallpapercmd[]  = {"wallpapernormal", NULL };
 static const char *revertwallpapercmd[]  = {"wallpaperdegen", NULL };
