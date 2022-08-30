@@ -9,7 +9,7 @@ static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows sel
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const int showsystray        = 1;     /* 0 means no systray */
+static int showsystray              = 0;     /* 0 means no systray */
 static const int showbar            = 0;     /* 0 means no bar */
 static const int topbar             = 1;     /* 0 means bottom bar */
 static const Bool viewontag         = True;  /* Switch view on tag switch */
@@ -71,7 +71,6 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *roficmd[] = { "rofi", "-show", "drun", "-theme", "~/.config/rofi/adi1090x.rasi", NULL };
 static const char *termcmd[]  = { "kitty", NULL };
-static const char *termcmdnotrans[]  = { "kitty", "-o", "background_opacity=1", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
 static const char *workbrowsercmd[]  = { "google-chrome-stable", "--profile-directory=Work", NULL };
 static const char *privbrowsercmd[]  = { "firefox", "--private-window", NULL };
@@ -95,8 +94,8 @@ static const Key keys[] = {
 	/* { 0,                     XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
     { 0,                     XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
 	{ 0,                     XF86XK_AudioMute, spawn, {.v = mutevol } }, */
-    { 0,			         XF86XK_MonBrightnessUp,   spawn, SHCMD("brightnessctl s +1% ; kill -44 $(pidof dwmblocks)") },
-	{ 0,			         XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl s 1%- ; kill -44 $(pidof dwmblocks)") },
+    { 0,			         XF86XK_MonBrightnessUp,   spawn, SHCMD("brightnessctl s +5% ; kill -44 $(pidof dwmblocks)") },
+	{ 0,			         XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl s 5%- ; kill -44 $(pidof dwmblocks)") },
     { 0,                     XF86XK_AudioMute,         spawn, SHCMD("pactl set-sink-mute 3 toggle; kill -44 $(pidof dwmblocks)") },
     { 0,                     XF86XK_AudioLowerVolume,  spawn, SHCMD("pactl set-sink-mute 3 false ; amixer -M sset Master 1%- ; kill -44 $(pidof dwmblocks)") },
     { 0,                     XF86XK_AudioRaiseVolume,  spawn, SHCMD("pactl set-sink-mute 3 false ; amixer -M sset Master 1%+ ; kill -44 $(pidof dwmblocks)") },
@@ -108,7 +107,6 @@ static const Key keys[] = {
 	{ MODKEY,                XK_v,      spawn,          {.v = clipboardcmd } },
 	{ MODKEY,                XK_r,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,      XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ControlMask,    XK_Return, spawn,          {.v = termcmdnotrans } },
 	{ MODKEY,                XK_q,      spawn,          {.v = roficmd } },
 	{ MODKEY,                XK_b,      spawn,          {.v = workbrowsercmd } },
 	{ MODKEY|ShiftMask,      XK_b,      spawn,          {.v = browsercmd } },
@@ -124,6 +122,7 @@ static const Key keys[] = {
 	{ MODKEY,                XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                XK_Return, zoom,           {0} },
+    { MODKEY,                XK_p,      togglesystray,  {0} },
 	{ MODKEY,                XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,      XK_c,      killclient,     {0} },
 	{ MODKEY,                XK_t,      setlayout,      {.v = &layouts[0]} },

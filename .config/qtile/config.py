@@ -75,9 +75,9 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "s", lazy.hide_show_bar("top"), desc="Toggle panel"),
     # Sound
-    Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 sset Master 1%- unmute")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 sset Master 1%+ unmute")),
+    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute 3 toggle")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 1%- unmute")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 1%+ unmute")),
     # Media keys
     Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
     Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
@@ -89,18 +89,16 @@ keys = [
     # Opening stuff
     Key([mod], "t", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod, "shift"], "t", lazy.spawn("kitty -o background_opacity=1"), desc="Launch kitty without transparency (for vim purposes)"),
-    Key([mod], "e", lazy.spawn("nautilus"), desc="Open Filemanager"),
-    Key([mod], "b", lazy.spawn("google-chrome --profile-directory='Profile 2'"), desc="Open no fun browser"),
-    Key([mod, "mod1"], "b", lazy.spawn("google-chrome --profile-directory='Default'"), desc="Open fun browser"),
-    Key([mod, "control"], "n", lazy.spawn("google-chrome --guest"), desc="Open upgraded incognito window"),
+    Key([mod], "e", lazy.spawn("kitty -e vifm"), desc="Open Filemanager"),
+    Key([mod], "b", lazy.spawn("google-chrome-stable --profile-directory='Work'"), desc="Open no fun browser"),
+    Key([mod, "mod1"], "b", lazy.spawn("google-chrome-stable --profile-directory='Default'"), desc="Open fun browser"),
+    Key([mod, "control"], "n", lazy.spawn("google-chrome-stable --guest"), desc="Open upgraded incognito window"),
     # Key([mod], "", lazy.spawn(""), desc=""),
     # Key([mod], "", lazy.spawn(""), desc=""),
     # Kill screen
     Key([mod], "i", lazy.spawn("xset dpms force off"), desc="Turn off screen"),
-    # Screenshot using xclip and imagemagick - switch to xsel later for clipmeny
-    Key([mod, "shift"], "s", lazy.spawn("/home/monke/.config/qtile/screenshot.sh"), desc="Screnshot with selection and save to clipboard"),
-    # Clipmenu w/ rofi
-    # Key([mod], "v", lazy.spawn(""), desc="Open clipboard using rofi and clipmenu"),
+    # Screenshot using xclip and imagemagick
+    Key([mod, "shift"], "s", lazy.spawn("screenshot"), desc="Screnshot with selection and save to clipboard"),
 ]
 
 groups = [Group(i) for i in "12345"]
@@ -188,8 +186,8 @@ screens = [
                     font = "Ubuntu Mono",
                     background = "#2E3440",
                     foreground = "#434C5E",
-                    padding = -2,
-                    fontsize = 43
+                    padding = -19,
+                    fontsize = 80
                     ),
                 widget.Prompt(
                     background = "#2E3440",
@@ -211,12 +209,12 @@ screens = [
                     font = "Ubuntu Mono",
                     foreground = "#2E3440",
                     background = "#434C5E",
-                    padding = -2,
-                    fontsize = 43
+                    padding = -19,
+                    fontsize = 80
                     ),
                 widget.Clock(format="%a %I:%M:%S %p %Y-%m-%d"),
                 widget.TextBox(
-                    text = ' ',
+                    text = '  ',
                     font = "Ubuntu Mono",
                     foreground = "#2E3440",
                     background = "#434C5E",
@@ -229,10 +227,17 @@ screens = [
                     widgets = [
                         widget.Systray(background = "#2E3440"),
                         ],
-                    text_open = ' ',
-                    text_closed = '',
+                    text_open = ' ',
+                    text_closed = ' ',
                     close_button_location = "right",
-                    font = "Ubuntu Mono", background = "#2E3440", foreground = "#434C5E",
+                    background = "#2E3440", 
+                    foreground = "#434C5E",
+                    ),
+                widget.TextBox(
+                    text = '',
+                    font = "Ubuntu Mono",
+                    background = "#2E3440",
+                    foreground = "#434C5E",
                     padding = -1,
                     fontsize = 43
                     ),
