@@ -73,13 +73,14 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *roficmd[] = { "rofi", "-show", "drun", "-theme", "~/.config/rofi/adi1090x.rasi", NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *termcmdnotrans[]  = { "kitty", "-o", "background_opacity=1", NULL };
-static const char *browsercmd[]  = { "google-chrome-stable", "--profile-directory=Default", NULL };
+static const char *browsercmd[]  = { "firefox", NULL };
 static const char *workbrowsercmd[]  = { "google-chrome-stable", "--profile-directory=Work", NULL };
-static const char *guestbrowsercmd[]  = { "google-chrome-stable", "--guest", NULL };
+static const char *privbrowsercmd[]  = { "firefox", "--private-window", NULL };
 static const char *screenshotcmd[]  = { "screenshot", NULL };
 static const char *wallpapercmd[]  = {"wallpapernormal", NULL };
 static const char *revertwallpapercmd[]  = {"wallpaperdegen", NULL };
 static const char *clipboardcmd[]  = { "diodon", NULL };
+static const char *explorercmd[]  = { "kitty", "-e", "vifm", NULL };
 static const char *musicnextcmd[]  = {"playerctl", "next", NULL };
 static const char *musicprevcmd[]  = {"playerctl", "previous", NULL };
 static const char *musicplaycmd[]  = {"playerctl", "play-pause", NULL };
@@ -94,16 +95,17 @@ static const Key keys[] = {
 	/* modifier              key        function        argument */
 	/* { 0,                     XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
     { 0,                     XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
-	{ 0,                     XF86XK_AudioMute, spawn, {.v = mutevol } },
-    { 0,			         XF86XK_MonBrightnessUp,   spawn,	{.v = light_up} },
-	{ 0,			         XF86XK_MonBrightnessDown, spawn,	{.v = light_down} }, */
-    { 0,                     XF86XK_AudioMute,         spawn, SHCMD("pactl set-sink-mute 0 toggle; kill -44 $(pidof dwmblocks)") },
-    { 0,                     XF86XK_AudioLowerVolume,  spawn, SHCMD("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -1%; kill -44 $(pidof dwmblocks)") },
-    { 0,                     XF86XK_AudioRaiseVolume,  spawn, SHCMD("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +1%; kill -44 $(pidof dwmblocks)") },
+	{ 0,                     XF86XK_AudioMute, spawn, {.v = mutevol } }, */
+    { 0,			         XF86XK_MonBrightnessUp,   spawn, SHCMD("brightnessctl s +1% ; kill -44 $(pidof dwmblocks)") },
+	{ 0,			         XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl s 1%- ; kill -44 $(pidof dwmblocks)") },
+    { 0,                     XF86XK_AudioMute,         spawn, SHCMD("pactl set-sink-mute 3 toggle; kill -44 $(pidof dwmblocks)") },
+    { 0,                     XF86XK_AudioLowerVolume,  spawn, SHCMD("pactl set-sink-mute 3 false ; amixer -M sset Master 1%- ; kill -44 $(pidof dwmblocks)") },
+    { 0,                     XF86XK_AudioRaiseVolume,  spawn, SHCMD("pactl set-sink-mute 3 false ; amixer -M sset Master 1%+ ; kill -44 $(pidof dwmblocks)") },
 	{ 0,                     XF86XK_AudioNext, spawn,   {.v = musicnextcmd } },
 	{ 0,                     XF86XK_AudioPrev, spawn,   {.v = musicprevcmd } },
 	{ 0,                     XF86XK_AudioPlay, spawn,   {.v = musicplaycmd } },
 	{ 0,                     XF86XK_AudioStop, spawn,   {.v = musicstopcmd } },
+	{ MODKEY,                XK_e,      spawn,          {.v = explorercmd } },
 	{ MODKEY,                XK_v,      spawn,          {.v = clipboardcmd } },
 	{ MODKEY,                XK_r,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,      XK_Return, spawn,          {.v = termcmd } },
@@ -111,7 +113,7 @@ static const Key keys[] = {
 	{ MODKEY,                XK_q,      spawn,          {.v = roficmd } },
 	{ MODKEY,                XK_b,      spawn,          {.v = workbrowsercmd } },
 	{ MODKEY|ShiftMask,      XK_b,      spawn,          {.v = browsercmd } },
-	{ MODKEY|ControlMask,    XK_n,      spawn,          {.v = guestbrowsercmd } },
+	{ MODKEY|ControlMask,    XK_n,      spawn,          {.v = privbrowsercmd } },
 	{ MODKEY|ShiftMask,      XK_s,      spawn,          {.v = screenshotcmd} },
 	{ MODKEY,                XK_o,      spawn,          {.v = wallpapercmd} },
 	{ MODKEY|ShiftMask,      XK_o,      spawn,          {.v = revertwallpapercmd} },
