@@ -83,4 +83,5 @@ fi
 
 export PATH="$HOME/.local/bin:$PATH"
 PS1="[\u@\h \W]\$ "
+source $HOME/Documents/nord-tty
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

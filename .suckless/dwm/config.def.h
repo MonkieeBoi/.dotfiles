@@ -75,8 +75,7 @@ static const char *browsercmd[]  = { "firefox", NULL };
 static const char *workbrowsercmd[]  = { "google-chrome-stable", "--profile-directory=Work", NULL };
 static const char *privbrowsercmd[]  = { "firefox", "--private-window", NULL };
 static const char *screenshotcmd[]  = { "screenshot", NULL };
-static const char *wallpapercmd[]  = {"wallpapernormal", NULL };
-static const char *revertwallpapercmd[]  = {"wallpaperdegen", NULL };
+static const char *wallpapertogglecmd[]  = {"wallpapertoggle", NULL };
 static const char *clipboardcmd[]  = { "diodon", NULL };
 static const char *explorercmd[]  = { "kitty", "-e", "vifm", NULL };
 static const char *musicnextcmd[]  = {"playerctl", "next", NULL };
@@ -112,9 +111,8 @@ static const Key keys[] = {
 	{ MODKEY,                XK_b,      spawn,          {.v = workbrowsercmd } },
 	{ MODKEY|ShiftMask,      XK_b,      spawn,          {.v = browsercmd } },
 	{ MODKEY|ControlMask,    XK_n,      spawn,          {.v = privbrowsercmd } },
-	{ MODKEY|ShiftMask,      XK_s,      spawn,          {.v = screenshotcmd} },
-	{ MODKEY,                XK_o,      spawn,          {.v = wallpapercmd} },
-	{ MODKEY|ShiftMask,      XK_o,      spawn,          {.v = revertwallpapercmd} },
+	{ MODKEY|ShiftMask,      XK_s,      spawn,          {.v = screenshotcmd } },
+	{ MODKEY,                XK_o,      spawn,          {.v = wallpapertogglecmd } },
 	{ MODKEY,                XK_s,      togglebar,      {0} },
 	{ MODKEY,                XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                XK_k,      focusstack,     {.i = -1 } },
