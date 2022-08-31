@@ -1,0 +1,8 @@
+#!/bin/sh
+degen=$(grep 2 ~/.fehbg)
+if [[ "$degen" = "" ]]
+then
+    feh --bg-fill ~/Pictures/Wallpapers/wallpaper2.png
+else
+    feh --bg-fill ~/Pictures/Wallpapers/wallpaper.jpg
+fi 
