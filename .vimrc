@@ -6,6 +6,9 @@ colorscheme nord
 "highlights searchs
 " set hlsearch
 
+"smart case
+set ignorecase smartcase
+
 "highlights while searching
 set incsearch
 
