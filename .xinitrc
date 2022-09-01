@@ -7,5 +7,6 @@ xset r rate 300 50
 picom &
 dwmblocks &
 diodon &
+dunst &
 exec dwm
 # qtile start
