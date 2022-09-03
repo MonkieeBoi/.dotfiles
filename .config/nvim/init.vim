@@ -1,3 +1,5 @@
+    let mapleader = ' '
+
 " Basic Settings
 
     set encoding=utf-8
@@ -5,12 +7,14 @@
     set is
     syntax on
     set nocompatible
-    filetype plugin on
-    set termguicolors " up here because of nvim-colorizer
+    set termguicolors
 
 " Autocompletion
 
     set wildmode=longest,list,full
+    filetype plugin on
+    set omnifunc=syntaxcomplete#Complete
+    " set shortmess+=c
 
 " Tabs
 
@@ -23,6 +27,11 @@
 " Splits
 
     set splitbelow splitright
+
+" Clipboard
+
+    " set clipboard+=unnamedplus
+
 
 " Plugins
 
@@ -38,12 +47,13 @@ call plug#end()
 
 lua << EOF
     require('Comment').setup()
-    require'colorizer'.setup()
+    require 'colorizer'.setup()
     -- require'nvim-treesitter.configs'.setup {
     --     context_commentstring = {
     --     enable = true
     --     }
     -- }
+
 EOF
 
 " Theming
@@ -52,10 +62,11 @@ EOF
     set laststatus=2
     colorscheme nord
 
-" Clipboard
-
-    " set clipboard+=unnamedplus
-
 " Keybinding
 
-    let mapleader = ' '
+    " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+    inoremap <c-c> <ESC>
+
+    " Use <TAB> to select the popup menu:
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
