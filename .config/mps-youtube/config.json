@@ -16,7 +16,7 @@
   "COLUMNS": "",
   "DDIR": "/home/monke/Videos/mps",
   "OVERWRITE": true,
-  "SHOW_VIDEO": false,
+  "SHOW_VIDEO": true,
   "SEARCH_MUSIC": true,
   "WINDOW_POS": "",
   "WINDOW_SIZE": "",

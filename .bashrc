@@ -1,4 +1,5 @@
 PS1="[\u@\h \W]\$ "
+# PS1="\e[1;33m[\e[34m\u\e[33m@\e[32m\h \e[39m\W\e[33m]\e[0m\$ "
 
 # Use vi for bash
 
