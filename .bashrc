@@ -1,5 +1,5 @@
-PS1="[\u@\h \W]\$ "
-# PS1="\e[1;33m[\e[34m\u\e[33m@\e[32m\h \e[39m\W\e[33m]\e[0m\$ "
+# PS1="[\u@\h \W]\$ "
+PS1="\[\e[1;33m\][\[\e[34m\]\u\[\e[33m\]@\[\e[32m\]\h \[\e[39m\]\W\[\e[33m\]]\[\e[0m\]\$ "
 
 # Use vi for bash
 
@@ -26,8 +26,6 @@ alias egrep='egrep --color=auto'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vi='nvim'
-alias p='sudo pacman'
-alias SS='sudo systemctl'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -44,4 +42,3 @@ shopt -s checkwinsize
 
 export PATH="$HOME/.local/bin:$PATH"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
-

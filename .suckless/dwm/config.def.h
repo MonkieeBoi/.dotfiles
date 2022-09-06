@@ -69,7 +69,6 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *roficmd[] = { "rofi", "-show", "drun", "-theme", "~/.config/rofi/adi1090x.rasi", NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
 static const char *workbrowsercmd[]  = { "google-chrome-stable", "--profile-directory=Work", NULL };
@@ -84,19 +83,11 @@ static const char *musicplaycmd[]  = {"playerctl", "play-pause", NULL };
 static const char *musicstopcmd[]  = {"playerctl", "stop", NULL };
 static const char *dmenumountcmd[]  = {"dmenumount", NULL };
 static const char *dmenuumountcmd[]  = {"dmenuumount", NULL };
-/* static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+1%", "kill -44 $(pidof dwmblocks)",    NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-1%", "kill -44 $(pidof dwmblocks)",     NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle", "kill -44 $(pidof dwmblocks)",  NULL }; */
-/* static const char *light_up[] = {"/usr/bin/light", "-A", "5", "kill -44 $(pidof dwmblocks)", NULL};
-static const char *light_down[] = {"/usr/bin/light", "-U", "5", "kill -44 $(pidof dwmblocks)", NULL}; */
 
 #include "movestack.c"
 static const Key keys[] = {
 	/* modifier              key        function        argument */
-	/* { 0,                     XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
-    { 0,                     XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
-	{ 0,                     XF86XK_AudioMute, spawn, {.v = mutevol } }, */
-    { 0,			         XF86XK_MonBrightnessUp,   spawn, SHCMD("brightnessctl s +5% ; kill -44 $(pidof dwmblocks)") },
+    { 0,			         XF86XK_MonBrightnessUp,   spawn, SHCMD("brightnessctl s 5%+ ; kill -44 $(pidof dwmblocks)") },
 	{ 0,			         XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl s 5%- ; kill -44 $(pidof dwmblocks)") },
     { 0,                     XF86XK_AudioMute,         spawn, SHCMD("pactl set-sink-mute 3 toggle; kill -44 $(pidof dwmblocks)") },
     { 0,                     XF86XK_AudioLowerVolume,  spawn, SHCMD("pactl set-sink-mute 3 false ; amixer -M sset Master 1%- ; kill -44 $(pidof dwmblocks)") },
@@ -111,7 +102,6 @@ static const Key keys[] = {
 	{ MODKEY,                XK_v,      spawn,          {.v = clipboardcmd } },
 	{ MODKEY,                XK_r,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,      XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                XK_q,      spawn,          {.v = roficmd } },
 	{ MODKEY,                XK_b,      spawn,          {.v = workbrowsercmd } },
 	{ MODKEY|ShiftMask,      XK_b,      spawn,          {.v = browsercmd } },
 	{ MODKEY|ControlMask,    XK_n,      spawn,          {.v = privbrowsercmd } },
@@ -137,6 +127,14 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,      XK_space,  togglefloating, {0} },
 	{ MODKEY|ShiftMask,      XK_f,      togglefullscreen, {0} },
 	{ MODKEY|ControlMask,    XK_f,      togglefakefullscreen, {0} },
+	{ MODKEY|ControlMask,               XK_j,   moveresize,     {.v = "0x 25y 0w 0h" } },
+	{ MODKEY|ControlMask,               XK_k,   moveresize,     {.v = "0x -25y 0w 0h" } },
+	{ MODKEY|ControlMask,               XK_l,   moveresize,     {.v = "25x 0y 0w 0h" } },
+	{ MODKEY|ControlMask,               XK_h,   moveresize,     {.v = "-25x 0y 0w 0h" } },
+	{ MODKEY|ControlMask|ShiftMask,     XK_j,   moveresize,     {.v = "0x 0y 0w 25h" } },
+	{ MODKEY|ControlMask|ShiftMask,     XK_k,   moveresize,     {.v = "0x 0y 0w -25h" } },
+	{ MODKEY|ControlMask|ShiftMask,     XK_l,   moveresize,     {.v = "0x 0y 25w 0h" } },
+	{ MODKEY|ControlMask|ShiftMask,     XK_h,   moveresize,     {.v = "0x 0y -25w 0h" } },
 	{ MODKEY,                XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,      XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                XK_comma,  focusmon,       {.i = -1 } },
