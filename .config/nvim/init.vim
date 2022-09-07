@@ -5,6 +5,7 @@
     set encoding=utf-8
     set nu rnu
     set is
+    set nohls
     syntax on
     set nocompatible
     set termguicolors
@@ -70,3 +71,5 @@ EOF
     " Use <TAB> to select the popup menu:
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Cleanup
+    :au VimLeave * set guicursor=a:ver25

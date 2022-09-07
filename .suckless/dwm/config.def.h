@@ -34,18 +34,19 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ "kitty",   NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	/* class       instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",      NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "Firefox",   NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "St",        NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "kitty",     NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "Alacritty", NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ NULL,        NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
 static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -69,14 +70,14 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "kitty", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
 static const char *workbrowsercmd[]  = { "google-chrome-stable", "--profile-directory=Work", NULL };
 static const char *privbrowsercmd[]  = { "firefox", "--private-window", NULL };
 static const char *screenshotcmd[]  = { "screenshot", NULL };
 static const char *wallpapertogglecmd[]  = {"wallpapertoggle", NULL };
 static const char *clipboardcmd[]  = { "diodon", NULL };
-static const char *explorercmd[]  = { "kitty", "-e", "vifm", NULL };
+static const char *explorercmd[]  = { "alacritty", "-e", "vifmrun", NULL };
 static const char *musicnextcmd[]  = {"playerctl", "next", NULL };
 static const char *musicprevcmd[]  = {"playerctl", "previous", NULL };
 static const char *musicplaycmd[]  = {"playerctl", "play-pause", NULL };
