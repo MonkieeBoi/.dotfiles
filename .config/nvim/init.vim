@@ -60,6 +60,7 @@ EOF
 " Theming
 
     let g:lightline = {'colorscheme': 'nord'}
+    let g:nord_disable_background = v:true
     set laststatus=2
     colorscheme nord
 
