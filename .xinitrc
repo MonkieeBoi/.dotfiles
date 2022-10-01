@@ -1,5 +1,6 @@
 #!/bin/sh
-setxkbmap -option caps:escape
+# [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+setxkbmap -option caps:swapescape
 setxkbmap -option keypad:pointerkeys
 xset r rate 300 50
 # feh --no-fehbg --bg-fill ~/Pictures/Wallpapers/wallpaper.jpg

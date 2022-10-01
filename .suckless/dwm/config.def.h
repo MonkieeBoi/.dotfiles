@@ -26,6 +26,23 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+/*
+const char *spcmd1[] = {"alacritty", "--class", "spterm", NULL };
+const char *spcmd2[] = {"alacritty", "--class", "spfm", "-e", "vifmrun", NULL };
+*/
+const char *spcmd1[] = {"st", "-n", "spterm", NULL };
+const char *spcmd2[] = {"st", "-n", "spfm", "-e", "vifmrun", NULL };
+static Sp scratchpads[] = {
+	/* name          cmd  */
+	{"spterm",      spcmd1},
+	{"spvifm",      spcmd2},
+};
+
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -34,19 +51,21 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class       instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",      NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox",   NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "St",        NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ "kitty",     NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ "Alacritty", NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,        NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	/* class       instance   title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",      NULL,        NULL,           0,         1,          0,           0,        -1 },
+	{ "Firefox",   NULL,        NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "st",        NULL,        NULL,           0,         0,          1,           0,        -1 },
+	{ "kitty",     NULL,        NULL,           0,         0,          1,           0,        -1 },
+	{ "Alacritty", NULL,        NULL,           0,         0,          1,           0,        -1 },
+	{ NULL,        NULL,        "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	{ NULL,		  "spterm",		NULL,	        SPTAG(0),  1,		   1,           0,        -1 },
+	{ NULL,		  "spfm",		NULL,	        SPTAG(1),  1,		   1,           0,        -1 },
 };
 
 /* layout(s) */
 static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -70,14 +89,14 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
 static const char *workbrowsercmd[]  = { "google-chrome-stable", "--profile-directory=Work", NULL };
 static const char *privbrowsercmd[]  = { "firefox", "--private-window", NULL };
 static const char *screenshotcmd[]  = { "screenshot", NULL };
 static const char *wallpapertogglecmd[]  = {"wallpapertoggle", NULL };
 static const char *clipboardcmd[]  = { "diodon", NULL };
-static const char *explorercmd[]  = { "alacritty", "-e", "vifmrun", NULL };
+static const char *explorercmd[]  = { "st", "-e", "vifmrun", NULL };
 static const char *musicnextcmd[]  = {"playerctl", "next", NULL };
 static const char *musicprevcmd[]  = {"playerctl", "previous", NULL };
 static const char *musicplaycmd[]  = {"playerctl", "play-pause", NULL };
@@ -99,7 +118,7 @@ static const Key keys[] = {
 	{ 0,                     XF86XK_AudioStop, spawn,   {.v = musicstopcmd } },
 	{ MODKEY|ShiftMask,      XK_m,      spawn,          {.v = dmenumountcmd } },
 	{ MODKEY|ControlMask,    XK_m,      spawn,          {.v = dmenuumountcmd } },
-	{ MODKEY,                XK_e,      spawn,          {.v = explorercmd } },
+	{ MODKEY|ShiftMask,      XK_e,      spawn,          {.v = explorercmd } },
 	{ MODKEY,                XK_v,      spawn,          {.v = clipboardcmd } },
 	{ MODKEY,                XK_r,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,      XK_Return, spawn,          {.v = termcmd } },
@@ -142,6 +161,8 @@ static const Key keys[] = {
 	{ MODKEY,                XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,      XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,      XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,                XK_a,  	togglescratch,  {.ui = 0 } },
+	{ MODKEY,                XK_e,	    togglescratch,  {.ui = 1 } },
 	TAGKEYS(                 XK_1,                      0)
 	TAGKEYS(                 XK_2,                      1)
 	TAGKEYS(                 XK_3,                      2)
