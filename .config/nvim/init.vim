@@ -9,6 +9,7 @@
     syntax on
     set nocompatible
     set termguicolors
+    set ignorecase smartcase
 
 " Autocompletion
 
