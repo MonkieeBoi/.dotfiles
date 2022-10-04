@@ -167,7 +167,11 @@ command! reload :write | restart full
 
 " Pdf
 filextype {*.pdf},<application/pdf> zathura %c %i &, apvlv %c, xpdf %c
-fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
+"fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
+fileviewer {*.pdf},<application/pdf>
+        \ vifmimg pdfpreview %px %py %pw %ph %c 
+        \ %pc 
+        \ vifmimg clear
 
 " PostScript
 filextype {*.ps,*.eps,*.ps.gz,*.epub},<application/postscript>

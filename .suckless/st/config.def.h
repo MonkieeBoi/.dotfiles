@@ -174,7 +174,7 @@ static Rune stcursor = 0x2603; /* snowman ("☃") */
  * Default columns and rows numbers
  */
 
-static unsigned int cols = 100;
+static unsigned int cols = 113;
 static unsigned int rows = 26;
 
 /*
