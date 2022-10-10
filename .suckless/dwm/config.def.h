@@ -34,12 +34,14 @@ typedef struct {
 const char *spcmd1[] = {"alacritty", "--class", "spterm", NULL };
 const char *spcmd2[] = {"alacritty", "--class", "spfm", "-e", "vifmrun", NULL };
 */
-const char *spcmd1[] = {"st", "-n", "spterm", NULL };
-const char *spcmd2[] = {"st", "-n", "spfm", "-e", "vifmrun", NULL };
+const char *spcmd1[] = {"st", "-n", "sp1term", NULL };
+const char *spcmd2[] = {"st", "-n", "sp2term", NULL };
+const char *spcmd3[] = {"st", "-n", "spfm", "-e", "vifmrun", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
-	{"spterm",      spcmd1},
-	{"spvifm",      spcmd2},
+	{"sp1term",     spcmd1},
+	{"sp2term",     spcmd2},
+	{"spvifm",      spcmd3},
 };
 
 
@@ -53,13 +55,14 @@ static const Rule rules[] = {
 	 */
 	/* class       instance   title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",      NULL,        NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox",   NULL,        NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "discord",   NULL,        NULL,           1 << 3,    0,          0,           0,        -1 },
 	{ "st",        NULL,        NULL,           0,         0,          1,           0,        -1 },
 	{ "kitty",     NULL,        NULL,           0,         0,          1,           0,        -1 },
 	{ "Alacritty", NULL,        NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,        NULL,        "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
-	{ NULL,		  "spterm",		NULL,	        SPTAG(0),  1,		   1,           0,        -1 },
-	{ NULL,		  "spfm",		NULL,	        SPTAG(1),  1,		   1,           0,        -1 },
+	{ NULL,		  "sp1term",	NULL,	        SPTAG(0),  1,		   1,           0,        -1 },
+	{ NULL,		  "sp2term",    NULL,	        SPTAG(1),  1,		   1,           0,        -1 },
+	{ NULL,		  "spfm",		NULL,	        SPTAG(2),  1,		   1,           0,        -1 },
 };
 
 /* layout(s) */
@@ -162,7 +165,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,      XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,      XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                XK_a,  	togglescratch,  {.ui = 0 } },
-	{ MODKEY,                XK_e,	    togglescratch,  {.ui = 1 } },
+	{ MODKEY,                XK_w,	    togglescratch,  {.ui = 1 } },
+	{ MODKEY,                XK_e,	    togglescratch,  {.ui = 2 } },
 	TAGKEYS(                 XK_1,                      0)
 	TAGKEYS(                 XK_2,                      1)
 	TAGKEYS(                 XK_3,                      2)
