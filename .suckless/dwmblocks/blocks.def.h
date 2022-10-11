@@ -5,7 +5,7 @@ static const Block blocks[] = {
 	{" ", "free -h | awk '/^Mem/ { print $3\"/\"$2 }' | sed s/i//g",	            10,   14},
 	{" ", "top -bn 1 | awk '/^%Cpu/ {print int($2 + $4 + $6)\"%\"}'",	            10,   18},
 	{" ", "amixer -M sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1",   0,   10},
-	{"  ", "echo -n \"$(cat /sys/class/power_supply/BAT1/capacity)%\"",	           120,    3},
+	{"  ", "echo -n \"$(cat /sys/class/power_supply/BAT1/capacity)%\"",	       120,    3},
     {" ", "echo -n \"$(($(brightnessctl get)*100/$(brightnessctl max)))% |\"",      0,   10},
 
 };
