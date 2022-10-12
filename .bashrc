@@ -27,6 +27,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vi='nvim'
 alias tsm='transmission-remote'
+alias fuckin='sudo'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -43,3 +44,10 @@ shopt -s checkwinsize
 
 export PATH="$HOME/.local/bin:$PATH"
 export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
+
+# Autocompletion for aliases
+_completion_loader sudo
+_completion_loader git
+
+complete -F _sudo fuckin
+complete -o bashdefault -o default -o nospace -F __git_wrap__git_main config
