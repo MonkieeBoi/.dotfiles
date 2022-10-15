@@ -155,6 +155,12 @@ Glyph style[] = {{' ',ATTR_ITALIC|ATTR_FAINT,15,16}, {' ',ATTR_ITALIC, 232,11},
                  {' ', ATTR_ITALIC, 232, 4}, {' ', ATTR_ITALIC, 232, 12}};
 
 /*
+ * Whether to use pixel geometry or cell geometry
+ */
+
+static Geometry geometry = PixelGeometry;
+
+/*
  https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h4-Functions-using-CSI-_-ordered-by-the-final-character-lparen-s-rparen:CSI-Ps-SP-q.1D81
  Default style of cursor
  0: blinking block
@@ -169,6 +175,13 @@ Glyph style[] = {{' ',ATTR_ITALIC|ATTR_FAINT,15,16}, {' ',ATTR_ITALIC, 232,11},
   */
 static unsigned int cursorstyle = 5;
 static Rune stcursor = 0x2603; /* snowman ("☃") */
+
+/*
+ * Default width and height (including borders!)
+ */
+
+static unsigned int width = 1024;
+static unsigned int height = 576;
 
 /*
  * Default columns and rows numbers
