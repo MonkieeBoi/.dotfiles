@@ -1,0 +1,11 @@
+#!/bin/bash
+window_class="discord"
+emote_dir=$HOME/Pictures/emotes/
+
+xdotool getwindowfocus getwindowclassname | grep $window_class || exit 1
+
+img=$(ls $emote_dir -1 | sed 's/.png$//g' | dmenu)'.png'
+xclip -selection clipboard -t image/png -i $emote_dir/$img
+
+xdotool key ctrl+v
+# xdotool key KP_Enter
