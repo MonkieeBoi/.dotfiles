@@ -36,13 +36,13 @@ typedef struct {
 const char *spcmd1[] = {"alacritty", "--class", "spterm", NULL };
 const char *spcmd2[] = {"alacritty", "--class", "spfm", "-e", "vifmrun", NULL };
 */
-const char *spcmd1[] = {"st", "-n", "sp1term", NULL };
-const char *spcmd2[] = {"st", "-n", "sp2term", NULL };
+const char *spcmd1[] = {"st", "-n", "spterm", NULL };
+const char *spcmd2[] = {"st", "-n", "spnotes", "-e", "vimwiki", NULL };
 const char *spcmd3[] = {"st", "-n", "spfm", "-e", "vifmrun", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
-	{"sp1term",     spcmd1},
-	{"sp2term",     spcmd2},
+	{"spterm",      spcmd1},
+	{"spnotes",     spcmd2},
 	{"spvifm",      spcmd3},
 };
 
@@ -65,8 +65,8 @@ static const Rule rules[] = {
 	{ "kitty",     NULL,        NULL,           0,         0,          1,           0,        -1 },
 	{ "Alacritty", NULL,        NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,        NULL,        "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
-	{ NULL,		  "sp1term",	NULL,	        SPTAG(0),  1,		   1,           0,        -1 },
-	{ NULL,		  "sp2term",    NULL,	        SPTAG(1),  1,		   1,           0,        -1 },
+	{ NULL,		  "spterm", 	NULL,	        SPTAG(0),  1,		   1,           0,        -1 },
+	{ NULL,		  "spnotes",    NULL,	        SPTAG(1),  1,		   1,           0,        -1 },
 	{ NULL,		  "spfm",		NULL,	        SPTAG(2),  1,		   1,           0,        -1 },
 };
 

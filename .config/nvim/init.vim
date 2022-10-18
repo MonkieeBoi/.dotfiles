@@ -43,20 +43,10 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'itchyny/lightline.vim'
     Plug 'numToStr/Comment.nvim'
     Plug 'norcalli/nvim-colorizer.lua'
+    Plug 'vimwiki/vimwiki'
     " Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 call plug#end()
-
-lua << EOF
-    require('Comment').setup()
-    require 'colorizer'.setup()
-    -- require'nvim-treesitter.configs'.setup {
-    --     context_commentstring = {
-    --     enable = true
-    --     }
-    -- }
-
-EOF
 
 " Theming
 
@@ -73,5 +63,21 @@ EOF
     " Use <TAB> to select the popup menu:
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Vimwiki
+
+    let g:vimwiki_list = [{'path': '~/Documents/vimwiki'}]
+
 " Cleanup
     :au VimLeave * set guicursor=a:ver25
+
+lua << EOF
+    require('Comment').setup()
+    require 'colorizer'.setup()
+    -- require'nvim-treesitter.configs'.setup {
+    --     context_commentstring = {
+    --     enable = true
+    --     }
+    -- }
+
+EOF
