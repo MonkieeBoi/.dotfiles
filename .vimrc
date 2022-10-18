@@ -1,37 +1,32 @@
-"set theming
-let g:lightline = {'colorscheme': 'nord'}
-set laststatus=2
-colorscheme nord
+" Basic Settings
 
-"highlights searchs
-" set hlsearch
+    set encoding=utf-8
+    set nu rnu
+    set is
+    set nohls
+    syntax on
+    set nocompatible
+    set ignorecase smartcase
 
-"smart case
-set ignorecase smartcase
+" Autocompletion
 
-"highlights while searching
-set incsearch
+    set wildmode=longest,list,full
+    filetype plugin on
 
-"sets default clipboard to system clipboard -- i don't think this actually works
-" set clipboard=unnamedplus
+" Tabs
 
-"set tab to 4 spaces
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+    set expandtab
+    set autoindent
 
-"makes tabs spaces - which is better for some reason
-set expandtab
-set autoindent
+" Splits
 
-"idk what this does
-set fileformat=unix
+    set splitbelow splitright
 
-"autocomplete, i think ctrl+n does something related to this
-set wildmode=longest,list,full
+" Theming
 
-"i give up commenting
-syntax on
-set encoding=utf-8
-
-set nu rnu
+    let g:lightline = {'colorscheme': 'nord'}
+    set laststatus=2
+    colorscheme nord
