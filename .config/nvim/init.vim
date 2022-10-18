@@ -39,7 +39,8 @@
 
 call plug#begin(stdpath('data') . '/plugged')
 
-    Plug 'shaunsingh/nord.nvim'
+    " Plug 'shaunsingh/nord.nvim'
+    Plug 'arcticicestudio/nord-vim'
     Plug 'itchyny/lightline.vim'
     Plug 'numToStr/Comment.nvim'
     Plug 'norcalli/nvim-colorizer.lua'
