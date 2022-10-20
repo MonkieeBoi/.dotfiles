@@ -34,6 +34,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vi='nvim'
 alias tsm='transmission-remote'
+alias dvtm='dvtm -m ^w'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
