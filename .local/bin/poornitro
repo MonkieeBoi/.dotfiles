@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 window_class="discord"
 emote_dir=$HOME/Pictures/emotes/
 
