@@ -1,0 +1,39 @@
+super + shift + Return
+    $TERMINAL
+
+super + shift + s
+	screenshot
+
+super + v
+    diodon
+
+super + shift + e
+    $TERMINAL -e vifmrun
+
+super + o
+    wallpapertoggle
+
+super + {shift,ctrl} + m
+    dmenu{_,u}mount
+
+super + p ; {v,d}
+	{$TERMINAL -e nvim,discord}
+
+super + b
+    google-chrome-stable --profile-directory=Work
+
+super + shift + {b,n}
+    firefox {_,--private-window}
+
+{_,shift + ,super + }XF86MonBrightness{Down,Up}
+	brightnessctl s {1%-,10%-,0%,+1%,+10%,100%} ; kill -44 $(pidof dwmblocks)
+
+XF86Audio{Prev,Next,Play,Stop}
+	playerctl {previous,next,play-pause,stop}
+
+XF86AudioMute
+    pactl set-sink-mute 3 toggle; kill -44 $(pidof dwmblocks)
+
+{_,shift + ,super + }XF86Audio{Lower,Raise}Volume
+    pactl set-sink-mute 3 false ; amixer -M sset Master {1%-,10%-,0%,1%+,10%+,100%} \
+    ; kill -44 $(pidof dwmblocks)

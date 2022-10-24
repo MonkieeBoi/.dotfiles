@@ -32,10 +32,7 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-/*
-const char *spcmd1[] = {"alacritty", "--class", "spterm", NULL };
-const char *spcmd2[] = {"alacritty", "--class", "spfm", "-e", "vifmrun", NULL };
-*/
+
 const char *spcmd1[] = {"st", "-n", "spterm", NULL };
 const char *spcmd2[] = {"st", "-n", "spnotes", "-e", "vimwiki", NULL };
 const char *spcmd3[] = {"st", "-n", "spfm", "-e", "vifmrun", NULL };
@@ -98,43 +95,11 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *browsercmd[]  = { "firefox", NULL };
-static const char *workbrowsercmd[]  = { "google-chrome-stable", "--profile-directory=Work", NULL };
-static const char *privbrowsercmd[]  = { "firefox", "--private-window", NULL };
-static const char *screenshotcmd[]  = { "screenshot", NULL };
-static const char *wallpapertogglecmd[]  = {"wallpapertoggle", NULL };
-static const char *clipboardcmd[]  = { "diodon", NULL };
-static const char *explorercmd[]  = { "st", "-e", "vifmrun", NULL };
-static const char *musicnextcmd[]  = {"playerctl", "next", NULL };
-static const char *musicprevcmd[]  = {"playerctl", "previous", NULL };
-static const char *musicplaycmd[]  = {"playerctl", "play-pause", NULL };
-static const char *musicstopcmd[]  = {"playerctl", "stop", NULL };
-static const char *dmenumountcmd[]  = {"dmenumount", NULL };
-static const char *dmenuumountcmd[]  = {"dmenuumount", NULL };
 
 #include "movestack.c"
 static const Key keys[] = {
 	/* modifier              key        function        argument */
-    { 0,			         XF86XK_MonBrightnessUp,   spawn, SHCMD("brightnessctl s 5%+ ; kill -44 $(pidof dwmblocks)") },
-	{ 0,			         XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl s 5%- ; kill -44 $(pidof dwmblocks)") },
-    { 0,                     XF86XK_AudioMute,         spawn, SHCMD("pactl set-sink-mute 3 toggle; kill -44 $(pidof dwmblocks)") },
-    { 0,                     XF86XK_AudioLowerVolume,  spawn, SHCMD("pactl set-sink-mute 3 false ; amixer -M sset Master 1%- ; kill -44 $(pidof dwmblocks)") },
-    { 0,                     XF86XK_AudioRaiseVolume,  spawn, SHCMD("pactl set-sink-mute 3 false ; amixer -M sset Master 1%+ ; kill -44 $(pidof dwmblocks)") },
-	{ 0,                     XF86XK_AudioNext, spawn,   {.v = musicnextcmd } },
-	{ 0,                     XF86XK_AudioPrev, spawn,   {.v = musicprevcmd } },
-	{ 0,                     XF86XK_AudioPlay, spawn,   {.v = musicplaycmd } },
-	{ 0,                     XF86XK_AudioStop, spawn,   {.v = musicstopcmd } },
-	{ MODKEY|ShiftMask,      XK_m,      spawn,          {.v = dmenumountcmd } },
-	{ MODKEY|ControlMask,    XK_m,      spawn,          {.v = dmenuumountcmd } },
-	{ MODKEY|ShiftMask,      XK_e,      spawn,          {.v = explorercmd } },
-	{ MODKEY,                XK_v,      spawn,          {.v = clipboardcmd } },
 	{ MODKEY,                XK_r,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,      XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                XK_b,      spawn,          {.v = workbrowsercmd } },
-	{ MODKEY|ShiftMask,      XK_b,      spawn,          {.v = browsercmd } },
-	{ MODKEY|ControlMask,    XK_n,      spawn,          {.v = privbrowsercmd } },
-	{ MODKEY|ShiftMask,      XK_s,      spawn,          {.v = screenshotcmd } },
-	{ MODKEY,                XK_o,      spawn,          {.v = wallpapertogglecmd } },
 	{ MODKEY,                XK_s,      togglebar,      {0} },
 	{ MODKEY,                XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                XK_k,      focusstack,     {.i = -1 } },
@@ -148,7 +113,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,      XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,      XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY,                XK_Return, zoom,           {0} },
-    { MODKEY,                XK_p,      togglesystray,  {0} },
+    { MODKEY,                XK_t,      togglesystray,  {0} },
 	{ MODKEY,                XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,      XK_c,      killclient,     {0} },
 	{ MODKEY,                XK_t,      setlayout,      {.v = &layouts[0]} },
