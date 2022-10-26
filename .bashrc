@@ -35,6 +35,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vi='nvim'
 alias tsm='transmission-remote'
 alias dvtm='dvtm -m ^w'
+alias feh='feh -Z -.'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.

@@ -4,6 +4,9 @@ super + shift + Return
 super + shift + s
 	screenshot
 
+super + ctrl + s
+	fullscreenshot
+
 super + v
     diodon
 
@@ -13,11 +16,14 @@ super + shift + e
 super + o
     wallpapertoggle
 
+super + ctrl + o
+    randomwallpaper
+
 super + {shift,ctrl} + m
     dmenu{_,u}mount
 
-super + p ; {v,d}
-	{$TERMINAL -e nvim,discord}
+super + p ; {d,z,t}
+	{discord,zathura,torbrowser-launcher}
 
 super + b
     google-chrome-stable --profile-directory=Work
