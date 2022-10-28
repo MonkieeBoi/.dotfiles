@@ -3,6 +3,3 @@ cursor_color: #a3be8c
 grid_color: #81a1c1
 hint_bgcolor: #2e3440
 hint_fgcolor: #d8dee9
-grid_nc: 3
-grid_nr: 3
-grid_keys: u i o j k l m , .
