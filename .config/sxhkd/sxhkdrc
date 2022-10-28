@@ -38,7 +38,7 @@ XF86Audio{Prev,Next,Play,Stop}
 	playerctl {previous,next,play-pause,stop} # ; pkill -RTMIN+3 dwmblocks
 
 XF86AudioMute
-    pactl set-sink-mute 3 toggle # ; pkill -RTMIN+1 dwmblocks
+    pactl set-sink-mute 3 toggle ; pkill -RTMIN+1 dwmblocks
 
 {_,shift + ,super + }XF86Audio{Lower,Raise}Volume
     pactl set-sink-mute 3 false ; amixer -M sset Master {1%-,10%-,0%,1%+,10%+,100%} \
