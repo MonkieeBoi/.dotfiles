@@ -19,8 +19,11 @@ super + o
 super + ctrl + o
     randomwallpaper
 
-super + {shift,ctrl} + m
-    dmenu{_,u}mount
+super + shift + m ; {m,u,e,r,p}
+    dmenu{mount,umount,unicode,record,power}
+
+shift + Print
+    killrecord
 
 super + p ; {d,z,t}
 	{discord,zathura,torbrowser-launcher}
@@ -31,7 +34,7 @@ super + b
 super + shift + {b,n}
     firefox {_,--private-window}
 
-{_,shift + ,super + }XF86MonBrightness{Down,Up}
+{_,shift +,super +} XF86MonBrightness{Down,Up}
 	brightnessctl s {1%-,10%-,0%,+1%,+10%,100%} ; pkill -RTMIN+2 dwmblocks
 
 XF86Audio{Prev,Next,Play,Stop}
