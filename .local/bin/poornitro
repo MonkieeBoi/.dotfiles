@@ -7,5 +7,5 @@ xdotool getwindowfocus getwindowclassname | grep $window_class || exit 1
 img=$(ls $emote_dir -1 | sed 's/.png$//g' | dmenu)'.png'
 xclip -selection clipboard -t image/png -i $emote_dir/$img
 
-if [ $img != ".png" ]; then xdotool key ctrl+v; fi
+[ $img != ".png" ] && xdotool key ctrl+v
 # xdotool key KP_Enter
