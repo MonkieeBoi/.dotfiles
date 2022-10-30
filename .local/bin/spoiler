@@ -1,0 +1,2 @@
+#!/bin/sh
+dmenu -p "String to spoiler" < /dev/null | sed 's/\(.\)/||\1||/g' | xclip -se c

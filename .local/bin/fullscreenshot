@@ -1,0 +1,2 @@
+#!/bin/sh
+import -window root /tmp/screenshot.png && xclip -se c -t image/png -i /tmp/screenshot.png
