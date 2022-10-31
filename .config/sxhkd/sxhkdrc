@@ -19,8 +19,8 @@ super + o
 super + ctrl + o
     randomwallpaper
 
-super + shift + m ; {m,u,e,r,p}
-    dmenu{mount,umount,unicode,record,power}
+super + shift + m ; {m,u,e,r,p,n}
+    dmenu{mount,umount,unicode,record,power,poornitro}
 
 shift + Print
     killrecord
