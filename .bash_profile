@@ -1,4 +1,4 @@
-export EDITOR="vim"
+export EDITOR="nvim"
 export TERMINAL="st"
 source ~/Documents/nord-tty
 [[ -f ~/.bashrc ]] && . ~/.bashrc
