@@ -9,7 +9,7 @@ static const Block blocks[] = {
     {" ",  "top -bn 1 | awk '/^%Cpu/ {print int($2 + $4 + $6)\"%\"}'",                                    30,    0},
     {"",    "amixer -M sget Master | awk -F '[][]' '/%/ { print $4 $2 }' | sed 's/on/ /;s/off.*/ﱝ/;1q'",   0,    1},
     {"",    "battery",                                                                                     90,    0},
-    {" ",  "echo -n \"$(($(brightnessctl get)*100/$(brightnessctl max)))% \"",                             0,    2},
+    {" ",  "echo \"$(xbacklight -get | cut -f1 -d '.')% \"",                                                   0,    2},
 
 };
 

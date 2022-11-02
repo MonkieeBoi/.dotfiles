@@ -35,7 +35,7 @@ super + shift + {b,n}
     firefox {_,--private-window}
 
 {_,shift +,super +} XF86MonBrightness{Down,Up}
-	brightnessctl s {1%-,10%-,0%,+1%,+10%,100%} ; pkill -RTMIN+2 dwmblocks
+	brightnessctl s {1%-,10%-,0%,+1%,+10%,100%} ; pkill -RTMIN+2 dwmblocks ; brightnessnotify
 
 XF86Audio{Prev,Next,Play,Stop}
 	playerctl {previous,next,play-pause,stop} # ; pkill -RTMIN+3 dwmblocks
@@ -45,4 +45,4 @@ XF86AudioMute
 
 {_,shift + ,super + }XF86Audio{Lower,Raise}Volume
     pactl set-sink-mute 3 false ; amixer -M sset Master {1%-,10%-,0%,1%+,10%+,100%} \
-    ; pkill -RTMIN+1 dwmblocks
+    ; pkill -RTMIN+1 dwmblocks ; volumenotify
