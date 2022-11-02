@@ -13,10 +13,10 @@ static int showsystray              = 0;     /* 0 means no systray */
 static const int showbar            = 0;     /* 0 means no bar */
 static const int topbar             = 1;     /* 0 means bottom bar */
 static const int splitstatus        = 1;        /* 1 for split status items */
-static const char *splitdelim        = "|";       /* Character used for separating status */
+static const char *splitdelim       = "|";       /* Character used for separating status */
 static const Bool viewontag         = True;  /* Switch view on tag switch */
-static const char *fonts[]            = { "JetBrains Mono Nerd Font:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "JetBrains Mono Nerd Font:size=9" };
+static const char dmenufont[]       = "monospace:size=9";
 static const char col_gray1[]       = "#2e3440";
 static const char col_gray2[]       = "#3B3252";
 static const char col_gray3[]       = "#d8dee9";
@@ -45,7 +45,7 @@ static Sp scratchpads[] = {
 
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
 
 /* Lockfile */
 static char lockfile[] = "/tmp/dwm.lock";
@@ -75,10 +75,14 @@ static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "﩯",      tile },    /* first entry is default */
+	{ "",      NULL },    /* no layout function means floating behavior */
+	{ "",      monocle },
 };
+
+/* custom symbols for nr. of clients in monocle layout */
+/* when clients >= LENGTH(monocles), uses the last element */
+static const char *monocles[] = { "", "", "", "", "", "", "", "", "", "" };
 
 /* key definitions */
 #define MODKEY Mod4Mask

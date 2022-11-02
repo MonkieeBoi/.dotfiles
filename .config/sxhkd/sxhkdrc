@@ -34,6 +34,9 @@ super + b
 super + shift + {b,n}
     firefox {_,--private-window}
 
+super + F5
+    pkill dwmblocks ; dwmblocks
+
 {_,shift +,super +} XF86MonBrightness{Down,Up}
 	brightnessctl s {1%-,10%-,0%,+1%,+10%,100%} ; pkill -RTMIN+2 dwmblocks ; brightnessnotify
 
