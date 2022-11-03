@@ -1,0 +1,5 @@
+#!/bin/sh
+bm=$(xclip -se c -o)
+bmfile=$HOME/.local/share/bookmarks
+grep -q "^$bm$" $bmfile || ([ $(printf "No\nYes" | dmenu -i -p "Save '$bm' as bookmark?") = "Yes" ] && echo $bm >> $bmfile)
+
