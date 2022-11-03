@@ -1,0 +1,3 @@
+#!/bin/sh
+brightness=$(xbacklight -get | cut -f1 -d '.')
+dunstify -t 1000 -r 2593 -h int:value:"$brightness" "Brightness: ${brightness}%"
