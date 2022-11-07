@@ -934,6 +934,7 @@ drawbar(Monitor *m)
 			urg |= c->tags;
 	}
 	x = 0;
+	x = drw_text(drw, x, 0, TEXTW(buttonbar) + 4, bh, lrpad / 2, buttonbar, 0);
 	for (i = 0; i < LENGTH(tags); i++) {
 		w = TEXTW(tags[i]);
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);

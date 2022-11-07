@@ -1,2 +1,2 @@
 #!/bin/sh
-grep 2 ~/.fehbg > /dev/null && feh --bg-fill ~/Pictures/Wallpapers/wallpaper.jpg || feh --bg-fill ~/Pictures/Wallpapers/wallpaper2.png
+grep -q 2 ~/.fehbg && feh --bg-fill ~/Pictures/Wallpapers/wallpaper.jpg || feh --bg-fill ~/Pictures/Wallpapers/wallpaper2.png
