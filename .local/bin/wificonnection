@@ -5,4 +5,4 @@ case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
 	up) wifiicon="直" ;;
 esac
 
-echo "$wifiicon "
+echo "$wifiicon"
