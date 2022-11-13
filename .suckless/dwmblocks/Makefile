@@ -21,6 +21,7 @@ dwmblocks: dwmblocks.c blocks.def.h blocks.h
 
 blocks.h:
 	cp blocks.def.h $@
+	# cp vanityblocks.def.h $@
 
 clean:
 	rm -f *.o *.gch dwmblocks

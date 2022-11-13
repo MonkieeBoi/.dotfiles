@@ -4,6 +4,7 @@
 include config.mk
 
 SRC = drw.c dwm.c util.c
+# SRC = drw.c vanitydwm.c util.c
 OBJ = ${SRC:.c=.o}
 
 all: options dwm
@@ -21,6 +22,7 @@ ${OBJ}: config.h config.mk
 
 config.h:
 	cp config.def.h $@
+	# cp vanityconfig.def.h $@
 
 dwm: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
