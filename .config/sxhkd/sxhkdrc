@@ -1,3 +1,6 @@
+super + Escape
+	pkill -SIGUSR1 -x sxhkd
+
 super + shift + Return
     $TERMINAL
 

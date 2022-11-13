@@ -24,7 +24,7 @@ screencast() { \
  	-c:v h264 -crf 0 -preset ultrafast -c:a aac \
 	"$HOME/Videos/captures/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
     echo $! > /tmp/recordingpid
-	echo "" > /tmp/recordingicon
+	echo "🔴" > /tmp/recordingicon
     pkill -RTMIN+4 dwmblocks
        	}
 
