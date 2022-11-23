@@ -22,6 +22,9 @@ super + o
 super + ctrl + o
     randomwallpaper
 
+super + shift + l
+    slock
+
 super + shift + m ; {m,u,e,r,p,n,b,a,o}
     dmenu{mount,umount,unicode,record,power,poornitro,-bluetooth,bookmarkadd,bookmarkopen}
 
