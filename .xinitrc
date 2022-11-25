@@ -12,4 +12,3 @@ dunst &
 warpd
 exec dwm
 # while type dwm >/dev/null ; do dwm && continue || break ; done
-# qtile start
