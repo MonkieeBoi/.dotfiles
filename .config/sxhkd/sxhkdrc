@@ -4,6 +4,9 @@ super + Escape
 super + shift + Return
     $TERMINAL
 
+super + r
+	dmenu_run
+
 super + shift + s
 	screenshot
 
