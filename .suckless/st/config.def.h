@@ -180,8 +180,8 @@ static Rune stcursor = 0x2603; /* snowman ("☃") */
  * Default width and height (including borders!)
  */
 
-static unsigned int width = 1024;
-static unsigned int height = 576;
+static unsigned int width = 960;
+static unsigned int height = 540;
 
 /*
  * Default columns and rows numbers
