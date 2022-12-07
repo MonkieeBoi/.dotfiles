@@ -3,3 +3,5 @@ cursor_color: #bf616a
 grid_color: #81a1c1
 hint_bgcolor: #2e3440
 hint_fgcolor: #d8dee9
+hint_oneshot_key: A-M-o
+hint2_oneshot_key: A-M-O
