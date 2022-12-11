@@ -19,10 +19,10 @@ super + v
 super + shift + e
     $TERMINAL -e vifmrun
 
-super + o
+super + shift + w
     wallpapertoggle
 
-super + ctrl + o
+super + ctrl + w
     randomwallpaper
 
 super + shift + l
