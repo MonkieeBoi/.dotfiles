@@ -9,7 +9,8 @@ bind -m vi-insert 'Control-l: clear-screen'
 
 # Infinite history
 
-HISTSIZE= HISTFILESIZE=
+HISTSIZE=
+HISTFILESIZE=
 
 # Colors
 
