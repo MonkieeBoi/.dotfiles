@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Kaomojis from http://kaomoji.ru/en/
+
+category=$(ls ~/.local/share/kaomoji | dmenu -i -l 15)
+
+[ -z "$category" ] && exit
+
+kaomoji=$(dmenu -i -l 15 < "$HOME/.local/share/kaomoji/$category" )
+
+[ -z "$kaomoji" ] && exit
+
+printf "$kaomoji" | xclip -se c
+notify-send -a 'Kaomoji Selected' "$kaomoji copied to clipboard"
