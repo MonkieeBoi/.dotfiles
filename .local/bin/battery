@@ -1,0 +1,5 @@
+#!/bin/sh
+dir=/sys/class/power_supply/BAT1/
+[ "$(cat $dir/capacity)" -le 20 ] && [ "$(cat $dir/status)" = "Discharging" ] && notify-send -a 'Battery' "Battery Low"
+[ "$(cat $dir/capacity)" -ge 80 ] && [ "$(cat $dir/status)" = "Charging" ] && notify-send -a 'Battery' "Battery High"
+sed ':a;N;$!ba;s/\n/ /;s/^d\S*//i;s/^c\S*//i;s/^f\S*/ /i;s/$/%/' $dir/status $dir/capacity
