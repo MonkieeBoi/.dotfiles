@@ -1,6 +1,5 @@
 #!/bin/sh
 bm=$(grep -v '^#' ~/.local/share/bookmarks | dmenu -i -p 'Bookmark' -l 25 | cut -d' ' -f1)
 [ -z "$bm" ] && exit 1
-printf "$bm" | xclip -se c
-[ "$(printf "Yes\nNo" | dmenu -i -p "Open in browser?")" = "Yes" ] && $BROWSER "$bm"
-# $BROWSER "$bm"
+[ "$(printf "Browser\nClipboard" | dmenu -i -p "Copy or open in browser?")" = "Clipboard" ] && printf '%s' "$bm" | xclip -se c && exit 0
+$BROWSER "$bm"
