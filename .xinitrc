@@ -4,6 +4,7 @@ setxkbmap -option caps:swapescape
 setxkbmap -option keypad:pointerkeys
 xset r rate 300 50
 sxhkd &
+fcitx -d &
 ~/.fehbg
 picom -b
 dwmblocks &
