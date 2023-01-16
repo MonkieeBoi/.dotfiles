@@ -31,8 +31,14 @@ super + shift + l
 super + shift + m ; {m,u,e,r,p,n,b,a,o,k}
     dmenu{mount,umount,unicode,record,power,poornitro,-bluetooth,bookmarkadd,bookmarkopen,kaomoji}
 
+super + F12
+    killall screenkey || screenkey &
+
 shift + Print
     killrecord
+
+ctrl + shift + Print
+	farge --notify --expire-time 3000
 
 super + p ; {d,z,t}
 	{discord,zathura,torbrowser-launcher}
