@@ -29,7 +29,7 @@ screencast() { \
     }
 
 selection() { \
-    slop=$(slop -f "%x %y %w %h") || exit 1
+    slop=$(slop -f "%x %y %w %h" --highlight --color=0.3,0.4,0.6,0.4 -D) || exit 1
     read -r X Y W H <<< "$slop"
     ffmpeg -y \
     -f x11grab \
