@@ -1,41 +1,59 @@
 #!/bin/sh
 
 killrecording() {
-	recpid="$(cat /tmp/recordingpid)"
-	# kill with SIGTERM, allowing finishing touches.
-	kill -15 "$recpid"
-	rm -f /tmp/recordingpid
-	rm -f /tmp/recordingicon
+    recpid="$(cat /tmp/recordingpid)"
+    # kill with SIGTERM, allowing finishing touches.
+    kill -15 "$recpid"
+    rm -f /tmp/recordingpid
+    rm -f /tmp/recordingicon
     pkill -RTMIN+4 dwmblocks
-	# even after SIGTERM, ffmpeg may still run, so SIGKILL it.
-	sleep 3
-	kill -9 "$recpid"
-	exit
-	}
+    # even after SIGTERM, ffmpeg may still run, so SIGKILL it.
+    sleep 3
+    kill -9 "$recpid"
+    exit
+    }
 
 screencast() { \
-	ffmpeg -y \
-	-f x11grab \
-	-framerate 30 \
-	-s "$(xdpyinfo | awk '/dimensions/ {print $2;}')" \
-	-i "$DISPLAY" \
-	-f alsa -i default \
-	-r 30 \
- 	-c:v h264 -crf 0 -preset ultrafast -c:a aac \
-	"$HOME/Videos/captures/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
+    ffmpeg -y \
+    -f x11grab \
+    -framerate 30 \
+    -s "$(xdpyinfo | awk '/dimensions/ {print $2;}')" \
+    -i "$DISPLAY" \
+    -f alsa -i default \
+    -r 30 \
+    -c:v h264 -crf 0 -preset ultrafast -c:a aac \
+    "$HOME/Videos/captures/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
     echo $! > /tmp/recordingpid
-	echo "🔴" > /tmp/recordingicon
+    echo "🔴" > /tmp/recordingicon
     pkill -RTMIN+4 dwmblocks
-       	}
+    }
+
+selection() { \
+    ffmpeg -y \
+    -f x11grab \
+    -framerate 30 \
+    -s "$(xdpyinfo | awk '/dimensions/ {print $2;}')" \
+    -i "$DISPLAY" \
+    -f alsa -i default \
+    -r 30 \
+    -c:v h264 -crf 0 -preset ultrafast -c:a aac \
+    "$HOME/Videos/captures/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
+    echo $! > /tmp/recordingpid
+    echo "🔴" > /tmp/recordingicon
+    pkill -RTMIN+4 dwmblocks
+    }
 
 askrecording() { \
-	choice=$(printf "Yes\\nNo" | dmenu -i -p "Record screen?") &&
-	[ "$choice" = "Yes" ] && screencast
-	}
+    choice=$(printf "Fullscreen\\nSelection" | dmenu -i -p "Recording Style") &&
+    case "$choice" in
+        Fullscreen) screencast;;
+        Selection) selection;;
+    esac
+    }
 
 asktoend() { \
-	response=$(printf "Yes\\nNo" | dmenu -i -p "End recording?") &&
-	[ "$response" = "Yes" ] && killrecording
-	}
+    response=$(printf "Yes\\nNo" | dmenu -i -p "End recording?") &&
+    [ "$response" = "Yes" ] && killrecording
+    }
 
 [ -f /tmp/recordingpid ] && asktoend && exit || askrecording
