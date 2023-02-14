@@ -40,8 +40,8 @@ shift + Print
 ctrl + shift + Print
 	farge --notify --expire-time 3000
 
-super + p ; {d,z,t}
-	{discord,zathura,torbrowser-launcher}
+super + p ; {d,z,t,r}
+	{discord,zathura,torbrowser-launcher,rstudio}
 
 super + b
     google-chrome-stable --profile-directory=Work
