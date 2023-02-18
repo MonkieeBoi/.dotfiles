@@ -13,6 +13,9 @@ super + shift + s
 super + ctrl + s
 	fullscreenshot
 
+super + ctrl + shift + s
+	tekapoint -p ~/Pictures/Screenshots
+
 super + v
     diodon
 
@@ -51,6 +54,9 @@ super + shift + {b,n}
 
 super + F5
     pkill dwmblocks ; dwmblocks
+
+super + c
+    pkill picom || picom -b
 
 {_,shift +,super +} XF86MonBrightness{Down,Up}
 	brightnessctl s {1%-,10%-,0%,+1%,+10%,100%} ; pkill -RTMIN+2 dwmblocks ; notifybrightness
