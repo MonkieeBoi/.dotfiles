@@ -535,6 +535,7 @@ buttonpress(XEvent *e)
     }
     if (ev->window == selmon->barwin) {
         i = x = 0;
+		x += TEXTW(baricon);
         do
             x += TEXTW(tags[i]);
         while (ev->x >= x && ++i < LENGTH(tags));
@@ -836,7 +837,8 @@ drawbar(Monitor *m)
             urg |= c->tags;
     }
     x = 0;
-    x = drw_text(drw, x, 0, TEXTW(baricon) + 4, bh, lrpad / 2, baricon, 0);
+	drw_setscheme(drw, scheme[SchemeNorm]);
+	x = drw_text(drw, x, 0, TEXTW(baricon) + 4, bh, lrpad / 2, baricon, 0);
 
     for (i = 0; i < LENGTH(tags); i++) {
         w = TEXTW(tags[i]);
