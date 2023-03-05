@@ -31,8 +31,8 @@ super + ctrl + w
 super + shift + l
     slock
 
-super + shift + m ; {m,u,e,r,p,n,b,a,o,k}
-    dmenu{mount,umount,unicode,record,power,poornitro,-bluetooth,bookmarkadd,bookmarkopen,kaomoji}
+super + shift + m ; {m,u,e,r,p,n,a,o,k,b}
+    dmenu{mount,umount,unicode,record,power,poornitro,bookmarkadd,bookmarkopen,kaomoji,-bluetooth -l 30}
 
 super + F12
     killall screenkey || screenkey &
@@ -46,8 +46,8 @@ ctrl + shift + Print
 super + p ; {d,z,t,r}
 	{discord,zathura,torbrowser-launcher,rstudio}
 
-super + b
-    google-chrome-stable --profile-directory=Work
+super + {b,n}
+    qutebrowser {_,--target private-window}
 
 super + shift + {b,n}
     firefox {_,--private-window}
