@@ -27,7 +27,8 @@ M.mason = {
     "shellcheck",
     "pylint",
     "python-lsp-server",
-    "clangd"
+    "clangd",
+    "texlab"
   },
 }
 

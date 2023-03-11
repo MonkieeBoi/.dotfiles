@@ -1,3 +1,4 @@
 #!/bin/sh
-brightness=$(xbacklight -get | cut -f1 -d '.')
+# brightness=$(xbacklight -get | cut -f1 -d '.')
+brightness=$(brightnessctl i | grep -Po '[0-9]+(?=%)')
 dunstify -t 1000 -r 2593 -h int:value:"$brightness" "Brightness: ${brightness}%"
