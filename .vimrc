@@ -27,6 +27,6 @@
 
 " Theming
 
-    let g:lightline = {'colorscheme': 'nord'}
-    set laststatus=2
-    colorscheme nord
+    " let g:lightline = {'colorscheme': 'nord'}
+    " set laststatus=2
+    " colorscheme nord
