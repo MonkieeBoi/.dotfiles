@@ -2330,6 +2330,7 @@ config.bind(',M', 'hint links spawn mpv {hint-url}')
 config.bind(',s', 'config-cycle statusbar.show in-mode never')
 config.bind(',t', 'config-cycle tabs.show always switching')
 config.bind(',r', 'hint --rapid')
+config.bind(',c', 'spawn --userscript rebuild-qutebrowser-grease-styles.py', mode='normal')
 
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
