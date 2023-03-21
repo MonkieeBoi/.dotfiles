@@ -1904,7 +1904,7 @@ c.tabs.max_width = 200
 ##   - persist: Retain the current mode.
 ##   - restore: Restore previously saved mode.
 ##   - normal: Always revert to normal mode.
-# c.tabs.mode_on_change = 'normal'
+c.tabs.mode_on_change = 'restore'
 
 ## Switch between tabs using the mouse wheel.
 ## Type: Bool
@@ -2087,7 +2087,7 @@ c.url.searchengines = {
         "dd":      "https://duckduckgo.com?q={}",
         "gh":      "https://github.com/search?q={}",
         "gm":      "https://mail.google.com/mail/u/0/#search/{}",
-        "re":      "https://reddit.net/r/all/search?q={}",
+        "re":      "https://reddit.com/r/all/search?q={}",
         "yt":      "https://www.youtube.com/results?search_query={}"
 }
 
