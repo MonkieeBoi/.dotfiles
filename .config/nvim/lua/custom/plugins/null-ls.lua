@@ -17,6 +17,8 @@ local sources = {
 
   -- cpp
   b.formatting.clang_format,
+
+  b.diagnostics.pylint,
 }
 
 null_ls.setup {
