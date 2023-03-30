@@ -39,6 +39,7 @@ alias vi='nvim'
 alias tsm='transmission-remote'
 alias dvtm='dvtm -m ^w'
 alias feh='feh -Z -.'
+alias onefetch='onefetch -t 2 7 7 4 4 7'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
