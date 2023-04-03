@@ -8,5 +8,5 @@ local autocmd = vim.api.nvim_create_autocmd
 
 autocmd("VimLeave", {
   pattern = "*",
-  command = "silent !echo -ne '\e[5 q'",
+  command = "set guicursor=n:ver25-blinkon1",
 })
