@@ -53,16 +53,16 @@ static const Rule rules[] = {
      *  WM_NAME(STRING) = title
      */
     /* class       instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-    { "Gimp",         NULL,     NULL,           0,         1,          0,           0,        -1 },
-    { "discord",      NULL,     NULL,           1 << 3,    0,          0,           0,        -1 },
-    { "st",           NULL,     NULL,           0,         0,          1,           0,        -1 },
-    { "kitty",        NULL,     NULL,           0,         0,          1,           0,        -1 },
-    { NULL,           NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
-    { NULL,          "spterm",  NULL,           SPTAG(0),  1,          1,           0,        -1 },
-    { NULL,          "spnotes", NULL,           SPTAG(1),  1,          1,           0,        -1 },
-    { NULL,          "spfm",    NULL,           SPTAG(2),  1,          1,           0,        -1 },
-    { NULL,          "spmusic", NULL,           SPTAG(3),  1,          1,           0,        -1 },
-    { "stalonetray", NULL,      NULL,           SPTAG(4),  1,          0,           1,        -1 },
+    { "Gimp",         NULL,      NULL,           0,         1,          0,           0,        -1 },
+    { "discord",      NULL,      NULL,           1 << 3,    0,          0,           0,        -1 },
+    { "st",           NULL,      NULL,           0,         0,          1,           0,        -1 },
+    { "kitty",        NULL,      NULL,           0,         0,          1,           0,        -1 },
+    { NULL,           NULL,      "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+    { NULL,           "spterm",  NULL,           SPTAG(0),  1,          1,           0,        -1 },
+    { NULL,           "spnotes", NULL,           SPTAG(1),  1,          1,           0,        -1 },
+    { NULL,           "spfm",    NULL,           SPTAG(2),  1,          1,           0,        -1 },
+    { NULL,           "spmusic", NULL,           SPTAG(3),  1,          1,           0,        -1 },
+    { "stalonetray",  NULL,      NULL,           SPTAG(4),  1,          0,           1,        -1 },
 };
 
 /* layout(s) */

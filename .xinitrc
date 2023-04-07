@@ -8,8 +8,8 @@ fcitx -d &
 ~/.fehbg
 picom -b
 dwmblocks &
-diodon &
+# diodon &
 dunst &
-warpd
+# warpd
 exec dwm
 # while type dwm >/dev/null ; do dwm && continue || break ; done
