@@ -3,6 +3,7 @@
 setxkbmap -option caps:swapescape
 setxkbmap -option keypad:pointerkeys
 xset r rate 300 50
+xset s off -dpms
 sxhkd &
 fcitx -d &
 ~/.fehbg

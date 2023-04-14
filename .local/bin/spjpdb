@@ -1,0 +1,4 @@
+#!/bin/sh
+xdotool key Super+8
+xdotool key Super+f
+qutebrowser --target window jpdb.io :spawn\ xdotool\ search\ --name\ jpdb\ windowmove\ 1441\ 45\ windowsize\ 453\ 1009 :spawn\ xdotool\ key\ Super+Ctrl+q\ Super+t\ Super+Tab
