@@ -1,8 +1,8 @@
 #!/bin/sh
 case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
-	down) wifiicon="睊" ;;
+	down) wifiicon="睊 " ;;
 	# up) wifiicon="直 $(awk '/^\s*w/ { print int($3 * 100 / 70) "%" }' /proc/net/wireless)" ;;
-	up) wifiicon="直" ;;
+	up) wifiicon="直 " ;;
 esac
 
 echo "$wifiicon"
