@@ -1447,7 +1447,7 @@ c.hints.radius = 2
 ##   - all: Forward all unbound keys.
 ##   - auto: Forward unbound non-alphanumeric keys.
 ##   - none: Don't forward any keys.
-# c.input.forward_unbound_keys = 'auto'
+c.input.forward_unbound_keys = 'all'
 
 ## Enter insert mode if an editable element is clicked.
 ## Type: Bool
@@ -1481,7 +1481,7 @@ c.hints.radius = 2
 ## Disabling it allows for emacs-like bindings where number keys are
 ## passed through (according to `input.forward_unbound_keys`) instead.
 ## Type: Bool
-# c.input.match_counts = True
+c.input.match_counts = False
 
 ## Whether the underlying Chromium should handle media keys. On Linux,
 ## disabling this also disables Chromium's MPRIS integration.

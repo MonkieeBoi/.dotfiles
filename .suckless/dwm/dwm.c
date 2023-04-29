@@ -305,7 +305,7 @@ static Monitor *mons, *selmon;
 static Window root, wmcheckwin;
 
 /* scratchpad */
-# define SCRATCHPAD_MASK (1u << (sizeof tags / sizeof * tags + 5))
+# define SCRATCHPAD_MASK (1u << (sizeof tags / sizeof * tags + 6))
 static Client * scratchpad_last_showed = NULL;
 
 static xcb_connection_t *xcon;

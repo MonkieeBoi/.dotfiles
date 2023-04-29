@@ -55,8 +55,8 @@ super + shift + {b,n}
 super + F5
     pkill dwmblocks ; dwmblocks
 
-super + c
-    pkill picom || picom -b
+super + x
+   pkill picom || picom -b
 
 {_,shift +,super +} XF86MonBrightness{Down,Up}
 	brightnessctl s {1%-,10%-,0%,+1%,+10%,100%} ; pkill -RTMIN+2 dwmblocks ; notifybrightness

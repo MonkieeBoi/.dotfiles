@@ -31,14 +31,16 @@ const char *spcmd1[] = {"st", "-n", "spterm", NULL };
 const char *spcmd2[] = {"st", "-n", "spnotes", "-e", "vimwiki", NULL };
 const char *spcmd3[] = {"st", "-n", "spfm", "-e", "vifmrun", NULL };
 const char *spcmd4[] = {"st", "-n", "spmusic", "-e", "cmus", NULL };
-const char *spcmd5[] = {"stalonetray", NULL };
+const char *spcmd5[] = {"st", "-n", "spcal", "-e", "calcurse", NULL };
+const char *spcmd6[] = {"stalonetray", NULL };
 static Sp scratchpads[] = {
     /* name          cmd  */
     {"spterm",      spcmd1},
     {"spnotes",     spcmd2},
     {"spvifm",      spcmd3},
     {"spmusic",     spcmd4},
-    {"sptray",      spcmd5},
+    {"spcal",       spcmd5},
+    {"sptray",      spcmd6},
 };
 
 /* tagging */
@@ -62,7 +64,8 @@ static const Rule rules[] = {
     { NULL,           "spnotes", NULL,           SPTAG(1),  1,          1,           0,        -1 },
     { NULL,           "spfm",    NULL,           SPTAG(2),  1,          1,           0,        -1 },
     { NULL,           "spmusic", NULL,           SPTAG(3),  1,          1,           0,        -1 },
-    { "stalonetray",  NULL,      NULL,           SPTAG(4),  1,          0,           1,        -1 },
+    { NULL,           "spcal",   NULL,           SPTAG(4),  1,          1,           0,        -1 },
+    { "stalonetray",  NULL,      NULL,           SPTAG(5),  1,          0,           1,        -1 },
 };
 
 /* layout(s) */
@@ -143,7 +146,8 @@ static const Key keys[] = {
     { MODKEY,                       XK_w,      togglescratch,        {.ui = 1 } },
     { MODKEY,                       XK_e,      togglescratch,        {.ui = 2 } },
     { MODKEY,                       XK_grave,  togglescratch,        {.ui = 3 } },
-    { MODKEY,                       XK_y,      togglescratch,        {.ui = 4 } },
+    { MODKEY,                       XK_c,      togglescratch,        {.ui = 4 } },
+    { MODKEY,                       XK_y,      togglescratch,        {.ui = 5 } },
     { MODKEY,                       XK_q,      scratchpad_show,      {0} },
     { MODKEY|ControlMask,           XK_q,      scratchpad_hide,      {0} },
     { MODKEY|ShiftMask,             XK_r,      scratchpad_remove,    {0} },
