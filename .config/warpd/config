@@ -5,3 +5,4 @@ hint_bgcolor: #2e3440
 hint_fgcolor: #d8dee9
 hint_oneshot_key: A-M-o
 hint2_oneshot_key: A-M-O
+hint_chars: asdfghjkl

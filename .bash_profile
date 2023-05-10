@@ -1,6 +1,5 @@
 export EDITOR="nvim"
 export TERMINAL="st"
-export TERM="st"
 export BROWSER="firefox"
 
 export GTK_IM_MODULE='fcitx'

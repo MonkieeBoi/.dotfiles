@@ -1,3 +1,6 @@
 #!/bin/sh
-import /tmp/screenshot.png && xclip -se c -t image/png -i /tmp/screenshot.png
+shotgun -s -f PAM - | feh -F - &
+sleep 0.2 && shotgun $(hacksaw -f "-i %i -g %g") /tmp/screenshot.png ; kill $!
+
+xclip -se c -t image/png -i /tmp/screenshot.png
 notify-send -i /tmp/screenshot.png "Screenshot copied to clipboard"

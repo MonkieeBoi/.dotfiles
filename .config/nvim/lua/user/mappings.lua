@@ -25,6 +25,7 @@ return {
     ["<A-v>"] = { "<cmd>ToggleTerm size=50 direction=vertical<cr>", desc = "ToggleTerm vertical split" },
     ["<leader>x"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" },
     ["<C-c>"] = { "<cmd> %y+ <CR>", desc = "Copy whole file" },
+    ["<leader>rn"] = {"<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename variable" },
   },
   t = {
     -- setting a mapping to false will disable it

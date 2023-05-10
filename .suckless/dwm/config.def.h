@@ -31,7 +31,7 @@ const char *spcmd1[] = {"st", "-n", "spterm", NULL };
 const char *spcmd2[] = {"st", "-n", "spnotes", "-e", "vimwiki", NULL };
 const char *spcmd3[] = {"st", "-n", "spfm", "-e", "vifmrun", NULL };
 const char *spcmd4[] = {"st", "-n", "spmusic", "-e", "cmus", NULL };
-const char *spcmd5[] = {"st", "-n", "spcal", "-e", "calcurse", NULL };
+const char *spcmd5[] = {"st", "-n", "spwhen", "-e", "spwhen", NULL };
 const char *spcmd6[] = {"stalonetray", NULL };
 static Sp scratchpads[] = {
     /* name          cmd  */
@@ -39,7 +39,7 @@ static Sp scratchpads[] = {
     {"spnotes",     spcmd2},
     {"spvifm",      spcmd3},
     {"spmusic",     spcmd4},
-    {"spcal",       spcmd5},
+    {"spwhen",      spcmd5},
     {"sptray",      spcmd6},
 };
 
@@ -64,7 +64,7 @@ static const Rule rules[] = {
     { NULL,           "spnotes", NULL,           SPTAG(1),  1,          1,           0,        -1 },
     { NULL,           "spfm",    NULL,           SPTAG(2),  1,          1,           0,        -1 },
     { NULL,           "spmusic", NULL,           SPTAG(3),  1,          1,           0,        -1 },
-    { NULL,           "spcal",   NULL,           SPTAG(4),  1,          1,           0,        -1 },
+    { NULL,           "spwhen",  NULL,           SPTAG(4),  1,          1,           0,        -1 },
     { "stalonetray",  NULL,      NULL,           SPTAG(5),  1,          0,           1,        -1 },
 };
 
