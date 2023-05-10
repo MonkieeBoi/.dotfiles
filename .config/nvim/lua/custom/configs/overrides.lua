@@ -38,6 +38,7 @@ M.mason = {
     "clangd",
     "clang-format",
     "shellcheck",
+    "texlab",
     "pylint",
     "python-lsp-server",
   },
