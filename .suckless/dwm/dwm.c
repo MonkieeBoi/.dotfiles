@@ -2271,7 +2271,7 @@ tile(Monitor *m)
             for (i = 0, my = ty = m->pertag->gappx[m->pertag->curtag], c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
                     if (i < m->nmaster) {
                             h = (m->wh - my) / (MIN(n, m->nmaster) - i) - m->pertag->gappx[m->pertag->curtag];
-                            resize(c, m->wx + m->pertag->gappx[m->pertag->curtag], m->wy + my, mw - (2*c->bw) - 1.5*m->pertag->gappx[m->pertag->curtag], h - (2*c->bw), 0);
+                            resize(c, m->wx + m->pertag->gappx[m->pertag->curtag], m->wy + my, mw - (2*c->bw) - (n > m->nmaster ? 1.5 : 1)*m->pertag->gappx[m->pertag->curtag], h - (2*c->bw), 0);
                             if (my + HEIGHT(c) + m->pertag->gappx[m->pertag->curtag] < m->wh)
                                     my += HEIGHT(c) + m->pertag->gappx[m->pertag->curtag];
                     } else {
