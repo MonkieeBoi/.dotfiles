@@ -1,15 +1,17 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx       = 1;     /* border pixel of windows */
-static const unsigned int snap           = 32;    /* snap pixel */
-static const int swallowfloating         = 0;     /* 1 means swallow floating windows by default */
-static const int showbar                 = 0;     /* 0 means no bar */
-static const int topbar                  = 1;     /* 0 means bottom bar */
+static const unsigned int borderpx       = 1;       /* border pixel of windows */
+static const int startwithgaps[]         = { 0 };   /* 1 means gaps are used by default, this can be customized for each tag */
+static const unsigned int gappx[]        = { 25 };  /* default gap between windows in pixels, this can be customized for each tag */
+static const unsigned int snap           = 32;      /* snap pixel */
+static const int swallowfloating         = 0;       /* 1 means swallow floating windows by default */
+static const int showbar                 = 0;       /* 0 means no bar */
+static const int topbar                  = 1;       /* 0 means bottom bar */
 static const char baricon[]              = "";
-static const int splitstatus             = 1;     /* 1 for split status items */
-static const char *splitdelim            = "|";   /* Character used for separating status */
-static const Bool viewontag              = True;  /* Switch view on tag switch */
+static const int splitstatus             = 1;       /* 1 for split status items */
+static const char *splitdelim            = "|";     /* Character used for separating status */
+static const Bool viewontag              = True;    /* Switch view on tag switch */
 static const char *fonts[]               = { "JetBrains Mono Nerd Font:size=9" };
 static const char col_gray1[]            = "#2e3440";
 static const char col_gray2[]            = "#3B3252";
@@ -120,6 +122,10 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_space,  togglefloating,       {0} },
     { MODKEY|ShiftMask,             XK_f,      togglefullscreen,     {0} },
     { MODKEY|ControlMask,           XK_f,      togglefakefullscreen, {0} },
+    { MODKEY,                       XK_minus,  setgaps,              {.i = -5 } },
+    { MODKEY,                       XK_equal,  setgaps,              {.i = +5 } },
+    { MODKEY|ShiftMask,             XK_minus,  setgaps,              {.i = GAP_RESET } },
+    { MODKEY|ShiftMask,             XK_equal,  setgaps,              {.i = GAP_TOGGLE} },
     { MODKEY|ControlMask,           XK_j,      moveresize,           {.v = "0x 25y 0w 0h" } },
     { MODKEY|ControlMask,           XK_k,      moveresize,           {.v = "0x -25y 0w 0h" } },
     { MODKEY|ControlMask,           XK_l,      moveresize,           {.v = "25x 0y 0w 0h" } },

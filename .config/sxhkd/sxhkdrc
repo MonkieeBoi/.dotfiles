@@ -55,8 +55,8 @@ super + shift + {b,n}
 super + F5
     pkill dwmblocks ; dwmblocks
 
-super + g
-   pkill picom || picom -b
+super + {_,shift +, ctrl +} g
+   pkill picom || picom -b { ,--corner-radius 7, --inactive-opacity 0.8 --active-opacity 0.9 --blur-background --blur-method dual_kawase --blur-strength 3 --corner-radius 7}
 
 super + x
     keym

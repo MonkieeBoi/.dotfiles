@@ -21,13 +21,8 @@ Windows are grouped by tags. Each window can be tagged with one or multiple
 tags. Selecting certain tags displays all windows with these tags.
 .P
 Each screen contains a small status bar which displays all available tags, the
-layout, the title of the focused window, and the text read from the root window
-name property, if the screen is focused. A floating window is indicated with an
-empty square and a maximised floating window is indicated with a filled square
-before the windows title.  The selected tags are indicated with a different
-color. The tags of the focused window are indicated with a filled square in the
-top left corner.  The tags which are applied to one or more windows are
-indicated with an empty square in the top left corner.
+layout and the text read from the root window name property, if the screen is
+focused. The selected tags are indicated with a different color.   
 .P
 dwm draws a small border around windows to indicate the focus state.
 .SH OPTIONS
@@ -56,15 +51,6 @@ click on a tag label applies that tag to the focused window.
 click on a tag label adds/removes that tag to/from the focused window.
 .SS Keyboard commands
 .TP
-.B Mod1\-Shift\-Return
-Start
-.BR st(1).
-.TP
-.B Mod1\-p
-Spawn
-.BR dmenu(1)
-for launching other programs.
-.TP
 .B Mod1\-,
 Focus previous screen, if any.
 .TP
@@ -77,7 +63,7 @@ Send focused window to previous screen, if any.
 .B Mod1\-Shift\-.
 Send focused window to next screen, if any.
 .TP
-.B Mod1\-b
+.B Mod1\-s
 Toggles bar on and off.
 .TP
 .B Mod1\-t
@@ -89,7 +75,7 @@ Sets floating layout.
 .B Mod1\-m
 Sets monocle layout.
 .TP
-.B Mod1\-space
+.B Mod1\-Control\-space
 Toggles between current and previous layout.
 .TP
 .B Mod1\-j
@@ -113,11 +99,20 @@ Decrease master area size.
 .B Mod1\-Return
 Zooms/cycles focused window to/from master area (tiled layouts only).
 .TP
+.B Mod1\-Shift\-j
+Move windows down the list.
+.TP
+.B Mod1\-Shift\-k
+Move windows down the list.
+.TP
 .B Mod1\-Shift\-c
 Close focused window.
 .TP
 .B Mod1\-Shift\-f
 Toggle fullscreen for focused window.
+.TP
+.B Mod1\-Control\-f
+Toggle fakefullscreen for focused window.
 .TP
 .B Mod1\-Shift\-space
 Toggle focused window between tiled and floating state.
@@ -143,8 +138,61 @@ View all windows with any tag.
 .B Mod1\-Control\-[1..n]
 Add/remove all windows with nth tag to/from the view.
 .TP
+.B Mod1\-minus
+Decrease gaps for focused tags.
+.TP
+.B Mod1\-equal
+Increase gaps for focused tags.
+.TP
+.B Mod1\-Shift\-minus
+Reset gaps.
+.TP
+.B Mod1\-Shift\-equal
+Toggle gaps.
+.TP
+.B Mod1\-Control\-[h,j,k,l]
+Move floating windows by 25px.
+.TP
+.B Mod1\-Control\-Shift\-[h,j,k,l]
+Resize floating windows by 25px.
+.TP
+.B Mod1\-Control\-Alt\-[h,j,k,l]
+Move floating windows by 1px.
+.TP
+.B Mod1\-Shift\-Alt\-[h,j,k,l]
+Resize floating windows by 1px.
+.TP
+.B Mod1\-a
+Scratchpad for st running bash.
+.TP
+.B Mod1\-w
+Scratchpad for st running nvim with vimwiki plugin.
+.TP
+.B Mod1\-e
+Scratchpad for st running vifm.
+.TP
+.B Mod1\-grave
+Scratchpad for st running cmus.
+.TP
+.B Mod1\-c
+Scratchpad for st, executing
+.BP when
+then going into bash.
+.TP
+.B Mod1\-y
+Scratchpad for stalonetray.
+.TP
+.B Mod1\-q
+Toggle dynamic scratchpad.
+.TP
+.B Mod1\-Control\-q
+Move focused window to dynamic scratchpad tag.
+.TP
+.B Mod1\-Shift\-r
+Remove focused window from dynamic scratchpad.
+.TP
 .B Mod1\-Shift\-q
-Quit dwm.
+Quits dwm if pressed twice within 1 second.
 .SS Mouse commands
 .TP
 .B Mod1\-Button1

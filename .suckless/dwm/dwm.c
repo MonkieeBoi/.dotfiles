@@ -66,6 +66,9 @@
 #define SPTAGMASK               (((1 << LENGTH(scratchpads))-1) << LENGTH(tags))
 #define TEXTW(X)                (drw_fontset_getwidth(drw, (X)) + lrpad)
 
+#define GAP_TOGGLE 100
+#define GAP_RESET  0
+
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
 enum { SchemeNorm, SchemeSel }; /* color schemes */
@@ -124,6 +127,7 @@ typedef struct {
 } Layout;
 
 typedef struct Pertag Pertag;
+
 struct Monitor {
     char ltsymbol[16];
     float mfact;
@@ -226,6 +230,7 @@ static void sendmon(Client *c, Monitor *m);
 static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
+static void setgaps(const Arg *arg);
 static void setlayout(const Arg *arg);
 static void setmfact(const Arg *arg);
 static void setup(void);
@@ -319,6 +324,9 @@ struct Pertag {
     float mfacts[LENGTH(tags) + 1]; /* mfacts per tag */
     unsigned int sellts[LENGTH(tags) + 1]; /* selected layouts */
     const Layout *ltidxs[LENGTH(tags) + 1][2]; /* matrix of tags and layouts indexes  */
+
+    int drawwithgaps[LENGTH(tags) + 1]; /* gaps toggle for each tag */
+    int gappx[LENGTH(tags) + 1]; /* gaps for each tag */
 };
 
 /* compile-time check if all tags fit into an unsigned int bit array. */
@@ -773,7 +781,13 @@ createmon(void)
         m->pertag->ltidxs[i][0] = m->lt[0];
         m->pertag->ltidxs[i][1] = m->lt[1];
         m->pertag->sellts[i] = m->sellt;
+        if (i > 0) {
+            m->pertag->drawwithgaps[i] = startwithgaps[(i - 1) % LENGTH(gappx)];
+            m->pertag->gappx[i] = gappx[(i - 1) % LENGTH(gappx)];
+        }
     }
+    m->pertag->drawwithgaps[0] = startwithgaps[0]; 
+    m->pertag->gappx[0] = gappx[0];
 
     return m;
 }
@@ -830,110 +844,110 @@ dirtomon(int dir)
 
 int
 drawstatusbar(Monitor *m, int dv, int bh, char* stext) {
-	int ret, i, w, x, len;
-	short isCode = 0;
-	char *text;
-	char *p;
+    int ret, i, w, x, len;
+    short isCode = 0;
+    char *text;
+    char *p;
 
-	len = strlen(stext) + 1 ;
-	if (!(text = (char*) malloc(sizeof(char)*len)))
-		die("malloc");
-	p = text;
-	memcpy(text, stext, len);
+    len = strlen(stext) + 1 ;
+    if (!(text = (char*) malloc(sizeof(char)*len)))
+        die("malloc");
+    p = text;
+    memcpy(text, stext, len);
 
-	/* compute width of the status text */
-	w = 0;
-	i = -1;
-	while (text[++i]) {
-		if (text[i] == '^') {
-			if (!isCode) {
-				isCode = 1;
-				text[i] = '\0';
-				w += TEXTW(text) - lrpad;
-				text[i] = '^';
-				if (text[++i] == 'f')
-					w += atoi(text + ++i);
-			} else {
-				isCode = 0;
-				text = text + i + 1;
-				i = -1;
-			}
-		}
-	}
-	if (!isCode)
-		w += TEXTW(text) - lrpad;
-	else
-		isCode = 0;
-	text = p;
+    /* compute width of the status text */
+    w = 0;
+    i = -1;
+    while (text[++i]) {
+        if (text[i] == '^') {
+            if (!isCode) {
+                isCode = 1;
+                text[i] = '\0';
+                w += TEXTW(text) - lrpad;
+                text[i] = '^';
+                if (text[++i] == 'f')
+                    w += atoi(text + ++i);
+            } else {
+                isCode = 0;
+                text = text + i + 1;
+                i = -1;
+            }
+        }
+    }
+    if (!isCode)
+        w += TEXTW(text) - lrpad;
+    else
+        isCode = 0;
+    text = p;
 
-	w += 2; /* 1px padding on both sides */
-	ret = x = (m->ww - w) / dv;
+    w += 2; /* 1px padding on both sides */
+    ret = x = (m->ww - w) / dv;
 
-	drw_setscheme(drw, scheme[LENGTH(colors)]);
-	drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
-	drw->scheme[ColBg] = scheme[SchemeNorm][ColBg];
-	drw_rect(drw, x, 0, w, bh, 1, 1);
-	x++;
+    drw_setscheme(drw, scheme[LENGTH(colors)]);
+    drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
+    drw->scheme[ColBg] = scheme[SchemeNorm][ColBg];
+    drw_rect(drw, x, 0, w, bh, 1, 1);
+    x++;
 
-	/* process status text */
-	i = -1;
-	while (text[++i]) {
-		if (text[i] == '^' && !isCode) {
-			isCode = 1;
+    /* process status text */
+    i = -1;
+    while (text[++i]) {
+        if (text[i] == '^' && !isCode) {
+            isCode = 1;
 
-			text[i] = '\0';
-			w = TEXTW(text) - lrpad;
-			drw_text(drw, x, 0, w, bh, 0, text, 0);
+            text[i] = '\0';
+            w = TEXTW(text) - lrpad;
+            drw_text(drw, x, 0, w, bh, 0, text, 0);
 
-			x += w;
+            x += w;
 
-			/* process code */
-			while (text[++i] != '^') {
-				if (text[i] == 'c') {
-					char buf[8];
-					memcpy(buf, (char*)text+i+1, 7);
-					buf[7] = '\0';
-					drw_clr_create(drw, &drw->scheme[ColFg], buf);
-					i += 7;
-				} else if (text[i] == 'b') {
-					char buf[8];
-					memcpy(buf, (char*)text+i+1, 7);
-					buf[7] = '\0';
-					drw_clr_create(drw, &drw->scheme[ColBg], buf);
-					i += 7;
-				} else if (text[i] == 'd') {
-					drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
-					drw->scheme[ColBg] = scheme[SchemeNorm][ColBg];
-				} else if (text[i] == 'r') {
-					int rx = atoi(text + ++i);
-					while (text[++i] != ',');
-					int ry = atoi(text + ++i);
-					while (text[++i] != ',');
-					int rw = atoi(text + ++i);
-					while (text[++i] != ',');
-					int rh = atoi(text + ++i);
+            /* process code */
+            while (text[++i] != '^') {
+                if (text[i] == 'c') {
+                    char buf[8];
+                    memcpy(buf, (char*)text+i+1, 7);
+                    buf[7] = '\0';
+                    drw_clr_create(drw, &drw->scheme[ColFg], buf);
+                    i += 7;
+                } else if (text[i] == 'b') {
+                    char buf[8];
+                    memcpy(buf, (char*)text+i+1, 7);
+                    buf[7] = '\0';
+                    drw_clr_create(drw, &drw->scheme[ColBg], buf);
+                    i += 7;
+                } else if (text[i] == 'd') {
+                    drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
+                    drw->scheme[ColBg] = scheme[SchemeNorm][ColBg];
+                } else if (text[i] == 'r') {
+                    int rx = atoi(text + ++i);
+                    while (text[++i] != ',');
+                    int ry = atoi(text + ++i);
+                    while (text[++i] != ',');
+                    int rw = atoi(text + ++i);
+                    while (text[++i] != ',');
+                    int rh = atoi(text + ++i);
 
-					drw_rect(drw, rx + x, ry, rw, rh, 1, 0);
-				} else if (text[i] == 'f') {
-					x += atoi(text + ++i);
-				}
-			}
+                    drw_rect(drw, rx + x, ry, rw, rh, 1, 0);
+                } else if (text[i] == 'f') {
+                    x += atoi(text + ++i);
+                }
+            }
 
-			text = text + i + 1;
-			i=-1;
-			isCode = 0;
-		}
-	}
+            text = text + i + 1;
+            i=-1;
+            isCode = 0;
+        }
+    }
 
-	if (!isCode) {
-		w = TEXTW(text) - lrpad;
-		drw_text(drw, x, 0, w, bh, 0, text, 0);
-	}
+    if (!isCode) {
+        w = TEXTW(text) - lrpad;
+        drw_text(drw, x, 0, w, bh, 0, text, 0);
+    }
 
-	drw_setscheme(drw, scheme[SchemeNorm]);
-	free(p);
+    drw_setscheme(drw, scheme[SchemeNorm]);
+    free(p);
 
-	return ret;
+    return ret;
 }
 
 void
@@ -1041,6 +1055,12 @@ focus(Client *c)
         attachstack(c);
         grabbuttons(c, 1);
         XSetWindowBorder(dpy, c->win, scheme[SchemeSel][ColBorder].pixel);
+        if (!selmon->pertag->drawwithgaps[selmon->pertag->curtag] && !c->isfloating) {
+            XWindowChanges wc;
+            wc.sibling = selmon->barwin;
+            wc.stack_mode = Below;
+            XConfigureWindow(dpy, c->win, CWSibling | CWStackMode, &wc);
+        }
         setfocus(c);
     } else {
         XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
@@ -1377,7 +1397,10 @@ monocle(Monitor *m)
     if (n > 0) /* override layout symbol */
         snprintf(m->ltsymbol, sizeof m->ltsymbol, "%s", monocles[MIN(n, LENGTH(monocles)) - 1]);
     for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
-        resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
+        if (selmon->pertag->drawwithgaps[selmon->pertag->curtag])
+            resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
+        else
+            resize(c, m->wx - c->bw, m->wy, m->ww, m->wh, False);
 }
 
 void
@@ -1629,8 +1652,9 @@ resizeclient(Client *c, int x, int y, int w, int h)
     c->oldw = c->w; c->w = wc.width = w;
     c->oldh = c->h; c->h = wc.height = h;
     wc.border_width = c->bw;
-    if (((nexttiled(c->mon->clients) == c && !nexttiled(c->next))
-        || &monocle == c->mon->lt[c->mon->sellt]->arrange)
+    if (!selmon->pertag->drawwithgaps[selmon->pertag->curtag] &&
+        (((nexttiled(c->mon->clients) == c && !nexttiled(c->next))
+        || &monocle == c->mon->lt[c->mon->sellt]->arrange))
         && (c->fakefullscreen == 1 || !c->isfullscreen)
         && !c->isfloating
         && c->mon->lt[c->mon->sellt]->arrange) {
@@ -1997,6 +2021,29 @@ setfullscreen(Client *c, int fullscreen)
 }
 
 void
+setgaps(const Arg *arg)
+{
+    switch(arg->i)
+    {
+        case GAP_TOGGLE:
+            selmon->pertag->drawwithgaps[selmon->pertag->curtag] = !selmon->pertag->drawwithgaps[selmon->pertag->curtag];
+            break;
+        case GAP_RESET:
+            if (selmon->pertag->curtag > 0)
+                selmon->pertag->gappx[selmon->pertag->curtag] = gappx[selmon->pertag->curtag - 1 % LENGTH(gappx)];
+            else
+                selmon->pertag->gappx[0] = gappx[0];
+            break;
+        default:
+            if (selmon->pertag->gappx[selmon->pertag->curtag] + arg->i < 0)
+                selmon->pertag->gappx[selmon->pertag->curtag] = 0;
+            else
+                selmon->pertag->gappx[selmon->pertag->curtag] += arg->i;
+    }
+    arrange(selmon);
+}
+
+void
 setlayout(const Arg *arg)
 {
     unsigned int i;
@@ -2216,23 +2263,42 @@ tile(Monitor *m)
     for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
     if (n == 0)
         return;
+    if (m->pertag->drawwithgaps[m->pertag->curtag]) { /* draw with fullgaps logic */
+            if (n > m->nmaster)
+                    mw = m->nmaster ? m->ww * m->mfact : 0;
+            else
+                    mw = m->ww - m->pertag->gappx[m->pertag->curtag];
+            for (i = 0, my = ty = m->pertag->gappx[m->pertag->curtag], c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+                    if (i < m->nmaster) {
+                            h = (m->wh - my) / (MIN(n, m->nmaster) - i) - m->pertag->gappx[m->pertag->curtag];
+                            resize(c, m->wx + m->pertag->gappx[m->pertag->curtag], m->wy + my, mw - (2*c->bw) - 1.5*m->pertag->gappx[m->pertag->curtag], h - (2*c->bw), 0);
+                            if (my + HEIGHT(c) + m->pertag->gappx[m->pertag->curtag] < m->wh)
+                                    my += HEIGHT(c) + m->pertag->gappx[m->pertag->curtag];
+                    } else {
+                            h = (m->wh - ty) / (n - i) - m->pertag->gappx[m->pertag->curtag];
+                            resize(c, m->wx + mw + 0.5*m->pertag->gappx[m->pertag->curtag], m->wy + ty, m->ww - mw - (2*c->bw) - 1.5*m->pertag->gappx[m->pertag->curtag], h - (2*c->bw), 0);
+                            if (ty + HEIGHT(c) + m->pertag->gappx[m->pertag->curtag] < m->wh)
+                                    ty += HEIGHT(c) + m->pertag->gappx[m->pertag->curtag];
+                    }
+    } else { /* draw with default borders logic */
+            if (n > m->nmaster)
+                mw = m->nmaster ? m->ww * m->mfact : 0;
+            else
+                mw = m->ww;
+            for (i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+                if (i < m->nmaster) {
+                    h = (m->wh - my) / (MIN(n, m->nmaster) - i);
+                    resize(c, m->wx, m->wy + my, mw - (2*c->bw), h - (2*c->bw), 0);
+                    if (my + HEIGHT(c) < m->wh)
+                        my += HEIGHT(c);
+                } else {
+                    h = (m->wh - ty) / (n - i);
+                    resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
+                    if (ty + HEIGHT(c) < m->wh)
+                        ty += HEIGHT(c);
+                }
+    }
 
-    if (n > m->nmaster)
-        mw = m->nmaster ? m->ww * m->mfact : 0;
-    else
-        mw = m->ww;
-    for (i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
-        if (i < m->nmaster) {
-            h = (m->wh - my) / (MIN(n, m->nmaster) - i);
-            resize(c, m->wx, m->wy + my, mw - (2*c->bw), h - (2*c->bw), 0);
-            if (my + HEIGHT(c) < m->wh)
-                my += HEIGHT(c);
-        } else {
-            h = (m->wh - ty) / (n - i);
-            resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
-            if (ty + HEIGHT(c) < m->wh)
-                ty += HEIGHT(c);
-        }
 }
 
 void
