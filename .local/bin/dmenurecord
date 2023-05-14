@@ -16,7 +16,7 @@ killrecording() {
 screencast() { \
     ffmpeg -y \
     -f x11grab \
-    -framerate 30 \
+    -framerate 60 \
     -s "$(xdpyinfo | awk '/dimensions/ {print $2;}')" \
     -i "$DISPLAY" \
     -f alsa -i default \
@@ -33,7 +33,7 @@ selection() { \
     read -r X Y W H <<< "$area"
     ffmpeg -y \
     -f x11grab \
-    -framerate 30 \
+    -framerate 60 \
     -s "$W"x"$H" \
     -i :0.0+"$X","$Y" \
     -f alsa -i default \
