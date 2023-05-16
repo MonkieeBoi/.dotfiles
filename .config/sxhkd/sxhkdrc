@@ -61,6 +61,9 @@ super + {_,shift +, ctrl +} g
 super + x
     keym
 
+super + z ; {1,2,3,4,5,6,7,8,9,0,q,w,e,r,t,y,u,i,o,p,a,s,d,f,g,h,j,k,l,semicolon,z,x,c,v,b,n,m,comma,period,slash}
+	warpix {1,2,3,4,5,6,7,8,9,0,q,w,e,r,t,y,u,i,o,p,a,s,d,f,g,h,j,k,l,";",z,x,c,v,b,n,m,"\,",".","/"}
+
 {_,shift +,super +} XF86MonBrightness{Down,Up}
 	brightnessctl s {1%-,10%-,0%,+1%,+10%,100%} ; pkill -RTMIN+2 dwmblocks ; notifybrightness
 
