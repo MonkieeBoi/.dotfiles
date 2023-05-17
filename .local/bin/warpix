@@ -10,7 +10,7 @@ for ((i=0; i<${#keys[@]}; i++)); do
     row=${keys[i]}
     column=$(expr index "$row" "$key")
     if [[ $column -ne 0 ]]; then
-        row_index=$((i + 1))
+        row_index=$i
         break
     fi
 done
@@ -23,7 +23,7 @@ if [[ $row_index && $column ]]; then
 
     # Calculate the destination coordinates
     x=$(((column - 1) * key_width + key_width / 2))
-    y=$(((row_index - 1) * key_height + key_height / 2))
+    y=$((row_index * key_height + key_height / 2))
 
     # Move the cursor to the calculated coordinates
     xdotool mousemove --screen 0 "$x" "$y"
