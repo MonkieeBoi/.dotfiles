@@ -62,7 +62,7 @@ super + @Alt_L
     keym
 
 super + x ; {0-9,a-z,semicolon,comma,period,slash}
-	warpix {0-9,a-z,";","\,",".","/"}
+	warpix {0-9,a-z,";","\,",".","/"} ; keym
 
 {_,shift +,super +} XF86MonBrightness{Down,Up}
 	brightnessctl s {1%-,10%-,0%,+1%,+10%,100%} ; pkill -RTMIN+2 dwmblocks ; notifybrightness
