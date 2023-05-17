@@ -16,8 +16,8 @@ super + ctrl + s
 super + ctrl + shift + s
 	tekapoint -p ~/Pictures/Screenshots
 
-super + v
-    diodon
+#super + v
+#    diodon
 
 super + shift + e
     $TERMINAL -e vifmrun
@@ -58,10 +58,10 @@ super + F5
 super + {_,shift +, ctrl +} g
    pkill picom || picom -b { ,--corner-radius 7, --inactive-opacity 0.8 --active-opacity 0.9 --blur-background --blur-method dual_kawase --blur-strength 3 --corner-radius 7}
 
-super + x
+super + @Alt_L
     keym
 
-super + z ; {0-9,a-z,semicolon,comma,period,slash}
+super + x ; {0-9,a-z,semicolon,comma,period,slash}
 	warpix {0-9,a-z,";","\,",".","/"}
 
 {_,shift +,super +} XF86MonBrightness{Down,Up}
