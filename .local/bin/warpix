@@ -16,6 +16,8 @@ for ((i=0; i<${#keys[@]}; i++)); do
 done
 
 if [[ $row_index && $column ]]; then
+    # screen_width=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+    # screen_height=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
     screen_width=1920
     screen_height=1080
     key_width=$((screen_width / 10))
