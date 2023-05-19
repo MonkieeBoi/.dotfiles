@@ -47,3 +47,5 @@ pacman -S - < ~/Downloads/pkgs
 **Notifications** - [dunst](https://dunst-project.org/)
 
 **Font** - [JetBrains Mono Nerd Font](https://www.nerdfonts.com/)
+
+**Pointer Movement** - [keym](https://github.com/cwkx/keym)
