@@ -14,35 +14,36 @@ git clone --bare https://github.com/MonkieeBoi/.dotfiles.git $HOME/.dotfiles
 git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
 source .bashrc
 config config --local status.showUntrackedFiles no
+pacman -S - < ~/Downloads/pkgs
 ```
 
 # What I Use
-**Operating System** - [Arch Linux]()
+**Operating System** - [Arch Linux](https://archlinux.org/)
 
-**Color Scheme** - [Nord]()
+**Color Scheme** - [Nord](https://www.nordtheme.com/)
 
-**Window Manager** - [dwm]()
+**Window Manager** - [dwm](https://dwm.suckless.org/)
 
-**Terminal** - [st]()
+**Terminal** - [st](https://st.suckless.org/)
 
-**Text Editor** - [NeoVim]()
+**Text Editor** - [NeoVim](https://neovim.io/)
 
-**Menus** - [dmenu]()
+**Menus** - [dmenu](https://tools.suckless.org/dmenu/)
 
-**File Manager** - [vifm]()
+**File Manager** - [vifm](https://vifm.info/)
 
-**Browser** - [qutebrowser]()
+**Browser** - [qutebrowser](https://qutebrowser.org/)
 
-**Image Viewer & Wallpapers** - [feh]()
+**Image Viewer & Wallpapers** - [feh](https://feh.finalrewind.org/)
 
-**Compositor** - [picom]()
+**Compositor** - [picom](https://github.com/yshui/picom)
 
-**Screenshots** - [shotgun]()
+**Screenshots** - [shotgun](https://github.com/neXromancers/shotgun)
 
-**Audio Visualiser** - [CAVA]()
+**Audio Visualiser** - [CAVA](https://github.com/karlstav/cava)
 
-**Keybinds** - [sxhkd]()
+**Keybinds** - [sxhkd](https://github.com/baskerville/sxhkd)
 
-**Notifications** - [dunst]()
+**Notifications** - [dunst](https://dunst-project.org/)
 
-**Font** - [JetBrains Mono Nerd Font]()
+**Font** - [JetBrains Mono Nerd Font](https://www.nerdfonts.com/)
