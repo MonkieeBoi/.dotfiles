@@ -1,7 +1,7 @@
 #!/bin/sh
 # [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 setxkbmap -option caps:swapescape
-setxkbmap -option keypad:pointerkeys
+# setxkbmap -option keypad:pointerkeys
 xset r rate 300 50
 xset s off -dpms
 sxhkd &
