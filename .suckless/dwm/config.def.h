@@ -77,14 +77,15 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
     /* symbol     arrange function */
-    { "﬿",      tile },    /* first entry is default */
-    { "",      NULL },    /* no layout function means floating behavior */
+    { "󰙀",      tile },    /* first entry is default */
+    { "󰀽",      NULL },    /* no layout function means floating behavior */
     { "",      monocle },
 };
 
 /* custom symbols for nr. of clients in monocle layout */
 /* when clients >= LENGTH(monocles), uses the last element */
-static const char *monocles[] = { "", "", "", "", "", "", "", "", "", "" };
+static const char *monocles[] = { "󰎤", "󰎧", "󰎪", "󰎭", "󰎱", "󰎳", "󰎶", "󰎹", "󰎼" };
+
 
 /* key definitions */
 #define MODKEY Mod4Mask
