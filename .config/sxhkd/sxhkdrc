@@ -43,8 +43,8 @@ shift + Print
 ctrl + shift + Print
 	farge --notify --expire-time 3000
 
-super + p ; {d,z,t,r}
-	{discord,zathura,torbrowser-launcher,rstudio-bin}
+super + p ; {d,z,t,r,m}
+	{discord,zathura,torbrowser-launcher,rstudio-bin,prismlauncher}
 
 super + {b,n}
     qutebrowser {_,--target private-window}
