@@ -38,7 +38,7 @@ pacman -S - < ~/Downloads/pkgs
 
 **Compositor** - [picom](https://github.com/yshui/picom)
 
-**Screenshots** - [shotgun](https://github.com/neXromancers/shotgun)
+**Screenshots** - [shotgun](https://github.com/neXromancers/shotgun) + [hacksaw](https://github.com/neXromancers/hacksaw)
 
 **Audio Visualiser** - [CAVA](https://github.com/karlstav/cava)
 
